@@ -70,7 +70,7 @@ def parseReviews(bookId, data):
     csv_reviews = []
 
     for review in reviews:
-        rr = review[0].text
+        rr = re.findall('(?<=<span class="Formatted">).+?(?=<\/span>)',str(review))
         if rr and re.match('.[a-zA-Z0-9-()]', rr[0]):
             name = users[index].findChildren("a" , recursive=False)
             date = dates[index].findChildren("a" , recursive=False)
