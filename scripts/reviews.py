@@ -75,7 +75,7 @@ def parseReviews(bookId, data):
             name = users[index].findChildren("a" , recursive=False)
             date = dates[index].findChildren("a" , recursive=False)
             r = CLEANR.sub('', rr[0])
-            csv_reviews.append(str(bookId) + ',' + '\"' + str(r) + '\"' + ',' + name[0].text + ',' + date[0].text + '\n')
+            csv_reviews.append(str(bookId) + ',' + '\"' + str(r) + '\"' + ',' + name[0].text + ',' + '\"' + date[0].text + '\"' + '\n')
         index = index + 1
     return bookId, csv_reviews
 
@@ -105,7 +105,7 @@ def fetch(session, bookId):
 async def get_data_asynchronous(bookIds_to_fetch):
     print("{0:<30} {1:>20}".format("Book", "Completed at"))
 
-    with ThreadPoolExecutor(max_workers=35) as executor:
+    with ThreadPoolExecutor(max_workers=300) as executor:
         with requests.Session() as session:
             
             # Set any session parameters here before calling `fetch`
