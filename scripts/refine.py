@@ -10,6 +10,10 @@ dataset.dropna(subset=['title', 'link', 'cover_link', 'author', 'author_link', '
                            'number_of_pages', 'date_published', 'publisher', 'genre_and_votes','isbn','isbn13', 'amazon_redirect_link',
                            'worldcat_redirect_link', 'description'], inplace=True)
 
+
+print(len(dataset))
+dataset = dataset[dataset['description'].map(len) >= 100]
+print(len(dataset))
 #Remove useless column
 dataset.drop(columns=['asin', 'review_count'], inplace=True)
 
