@@ -22,7 +22,7 @@ CLEANR = re.compile('<.*?>')
 
 queue = Queue()
 
-f = open("../dataset/reviews.csv", "w")
+f = open("../dataset/reviews_missing.csv", "w")
 
 def signal_handler(sig, frame):
     print('You pressed Ctrl+C!')
@@ -106,7 +106,7 @@ def fetch(session, bookId):
 async def get_data_asynchronous(bookIds_to_fetch):
     print("{0:<30} {1:>20}".format("Book", "Completed at"))
 
-    with ThreadPoolExecutor(max_workers=20) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         with requests.Session() as session:
             
             # Set any session parameters here before calling `fetch`
@@ -142,7 +142,7 @@ def main():
     col_list = ["id"]
 
     #input file to get ids
-    bookIds_to_fetch = pd.read_csv("../dataset/clean_data.csv", index_col=0, usecols=col_list)
+    bookIds_to_fetch = pd.read_csv("../dataset/missing.csv", index_col=0, usecols=col_list)
     
     loop = asyncio.get_event_loop()
     future = asyncio.ensure_future(get_data_asynchronous(bookIds_to_fetch))
