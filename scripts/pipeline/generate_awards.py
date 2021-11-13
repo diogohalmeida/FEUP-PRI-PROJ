@@ -1,7 +1,7 @@
 import pandas
 import re
 
-dataset = pandas.read_csv("../../dataset/clean_data.csv")
+dataset = pandas.read_csv("../../dataset/goodreads_books_clean.csv")
 ids = dataset["id"].tolist()
 
 awards1 = dataset["awards"]

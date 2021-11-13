@@ -22,7 +22,7 @@ CLEANR = re.compile('<.*?>')
 
 queue = Queue()
 
-f = open("../dataset/reviews_missing.csv", "w")
+f = open("../../dataset/goodreads_reviews.csv", "w")
 
 def signal_handler(sig, frame):
     print('You pressed Ctrl+C!')
@@ -142,7 +142,7 @@ def main():
     col_list = ["id"]
 
     #input file to get ids
-    bookIds_to_fetch = pd.read_csv("../dataset/missing.csv", index_col=0, usecols=col_list)
+    bookIds_to_fetch = pd.read_csv("../../dataset/goodreads_books_clean.csv", index_col=0, usecols=col_list)
     
     loop = asyncio.get_event_loop()
     future = asyncio.ensure_future(get_data_asynchronous(bookIds_to_fetch))

@@ -1,6 +1,6 @@
 import pandas
 
-dataset = pandas.read_csv("../../dataset/clean_data.csv")
+dataset = pandas.read_csv("../../dataset/goodreads_books_clean.csv")
 ids = dataset["id"].tolist()
         
 characters = []
