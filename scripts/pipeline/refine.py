@@ -21,6 +21,7 @@ dataset.drop(columns=['asin', 'review_count'], inplace=True)
 
 #Remove books that have strange chars
 dataset = dataset[dataset.title.str.contains('.[a-zA-Z0-9-()]', regex= True, na=False)]
+dataset = dataset[dataset.description.str.contains('.[a-zA-Z0-9-()]', regex= True, na=False)]
 
 #All book ids (useful to remove associated books that have been removed)
 ids = dataset["id"].tolist()
@@ -34,26 +35,26 @@ dataset = dataset[~dataset.id.isin(missing)]
 print(len(dataset))
 
 #Delete books from recommended and series cells that were removed before
-to_delete = list()  # this will speed things up doing only 1 delete
-for id, row in dataset.iterrows():
-    if(not pandas.isnull(row.books_in_series)):
-        series_ids = [int(s) for s in str(row.books_in_series).split(',')]
-        for serie_id in series_ids:
-            if(serie_id not in ids):
-                series_ids.remove(serie_id)
-        row["books_in_series"] = series_ids
+# to_delete = list()  # this will speed things up doing only 1 delete
+# for id, row in dataset.iterrows():
+#     if(not pandas.isnull(row.books_in_series)):
+#         series_ids = [int(s) for s in str(row.books_in_series).split(',')]
+#         for serie_id in series_ids:
+#             if(serie_id not in ids):
+#                 series_ids.remove(serie_id)
+#         row["books_in_series"] = series_ids
             
 
-#to_delete = list()  # this will speed things up doing only 1 delete
-for id, row in dataset.iterrows():
-    if(not pandas.isnull(row.recommended_books)):
-        series_ids = [int(s) for s in str(row.recommended_books).split(',')]
-        for serie_id in series_ids:
-              if(serie_id not in ids):
-                  series_ids.remove(serie_id)
-        row["recommended_books"] = series_ids
+# #to_delete = list()  # this will speed things up doing only 1 delete
+# for id, row in dataset.iterrows():
+#     if(not pandas.isnull(row.recommended_books)):
+#         series_ids = [int(s) for s in str(row.recommended_books).split(',')]
+#         for serie_id in series_ids:
+#               if(serie_id not in ids):
+#                   series_ids.remove(serie_id)
+#         row["recommended_books"] = series_ids
 
 
-dataset.to_csv('../../dataset/clean_data.csv', index = False)
+# dataset.to_csv('../../dataset/teste.csv', index = False)
 
 print(len(dataset))

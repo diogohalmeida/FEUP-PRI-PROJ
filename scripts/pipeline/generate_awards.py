@@ -1,4 +1,5 @@
 import pandas
+import re
 
 dataset = pandas.read_csv("../../dataset/clean_data.csv")
 ids = dataset["id"].tolist()
@@ -22,14 +23,23 @@ aux = []
 for id, row in dataset.iterrows():
     if type(row['awards']) != type(float('nan')):
         awards = [" ".join(j.split(",")) for j in row['awards'].split(";")]
-        aux1 = " "
+        #for j in awards:
+            
+        aux1 = []#[" ".join(j.split(") ")) for j in awards]
+        #print(awards)
+        
         for j in awards:
-            aux1.join(j.split("  "))
-        for i in aux:
-            if i not in award_count.keys():
-                award_count[i] = 1
-            else:
-                award_count[i] += 1
+            aux2 = re.split('(?<=\d\))[ ]+(?=[A-Z])', j)
+            for i in aux2:
+                aux.append((row['id'], i))
+            
+        #print(aux1)
+        # for i in aux1:
+        #     if i not in award_count.keys():
+        #         award_count[i] = 1
+        #     else:
+        #         award_count[i] += 1
+        #break
                 
 # awards_to_use = set()
 
