@@ -20,6 +20,23 @@ for id, row in dataset.iterrows():
                 
 awards_frame = pandas.DataFrame(awards_list,columns=["id","Award"])
 
+years = []
+
+year_regex = re.compile(r'\d\d\d\d')
+
+
+for id, row in awards_frame.iterrows():
+    award = row['Award']
+    year = year_regex.search(award)
+    award_without_year = re.sub('\(\d\d\d\d\)', '' , award)
+    awards_frame['Award'].replace(row['Award'], award_without_year, inplace=True)
+    if year != None:
+        years.append(year.group())
+    else:
+        years.append(None)
+        
+awards_frame["Year"] = years
+
 awards_frame.to_csv('../../dataset/awards.csv', index = False)
             
                 
