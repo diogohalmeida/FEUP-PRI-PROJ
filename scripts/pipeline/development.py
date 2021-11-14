@@ -128,26 +128,26 @@ s = dataset_reviews['Id'].unique()
     
     
 #Publish Year distribution histogram
-def parse_year(date):
-    if type(date) == type(float("nan")):
-        return
-    year_check = match(r'.*([1-3][0-9]{3})', date)
-    if year_check != None:
-        return int(year_check.group(1))
+# def parse_year(date):
+#     if type(date) == type(float("nan")):
+#         return
+#     year_check = match(r'.*([1-3][0-9]{3})', date)
+#     if year_check != None:
+#         return int(year_check.group(1))
 
-dataset['year_published'] = dataset["date_published"].apply(parse_year)
-fig = plt.figure(figsize=(16,9))
-n, bins, patches = plt.hist(dataset['year_published'].dropna(inplace=False), bins=250, facecolor='#2ab0ff', edgecolor='#e0e0e0', linewidth=0.5, alpha=0.7)
-n = n.astype('int') # it MUST be integer
-for i in range(len(patches)):
-    patches[i].set_facecolor(plt.cm.viridis(n[i]/max(n)))
+# dataset['year_published'] = dataset["date_published"].apply(parse_year)
+# fig = plt.figure(figsize=(16,9))
+# n, bins, patches = plt.hist(dataset['year_published'].dropna(inplace=False), bins=250, facecolor='#2ab0ff', edgecolor='#e0e0e0', linewidth=0.5, alpha=0.7)
+# n = n.astype('int') # it MUST be integer
+# for i in range(len(patches)):
+#     patches[i].set_facecolor(plt.cm.viridis(n[i]/max(n)))
 
-plt.title('Publication Year Distribution', fontsize=20)
-plt.xlabel('Year', fontsize=16)
-plt.ylabel('Count', fontsize=16)
-plt.xticks(fontsize=14)
-plt.yticks(fontsize=14)
-plt.show()   
+# plt.title('Publication Year Distribution', fontsize=20)
+# plt.xlabel('Year', fontsize=16)
+# plt.ylabel('Count', fontsize=16)
+# plt.xticks(fontsize=14)
+# plt.yticks(fontsize=14)
+# plt.show()   
     
     
     
