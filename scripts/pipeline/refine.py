@@ -3,7 +3,7 @@ import pandas
 
 def fix_encoding(text):
     if isinstance(text, str):
-        return text.encode('latin-1', 'replace').decode('utf-8', 'replace')
+        return text.encode('latin-1', 'ignore').decode('utf-8', 'ignore')
     
 
 dataset = pandas.read_csv("../../dataset/goodreads_books.csv")
@@ -12,9 +12,13 @@ dataset_reviews = pandas.read_csv("../../dataset/goodreads_reviews.csv")
 
 print("Initial: " + str(len(dataset)))
 
-
 #Remove useless column
 dataset.drop(columns=['asin', 'review_count'], inplace=True)
+
+#Add title if book doesn't have an original title
+for i in dataset.index:
+    if not isinstance(dataset.iloc[i]['original_title'], str):
+        dataset.at[i, 'original_title'] = dataset.iloc[i]['title']
 
 
 #Drop rows with NaN values in the following columns:

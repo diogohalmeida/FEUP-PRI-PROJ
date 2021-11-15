@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import numpy as np
 from re import sub, match
+import math
+import spacy
+from spacy_langdetect import LanguageDetector
+from spacy.language import Language
 
 
 dataset = pandas.read_csv("../../dataset/goodreads_books_clean.csv")
@@ -20,8 +24,6 @@ dataset_characters = pandas.read_csv("../../dataset/characters.csv")
 dataset_genres = pandas.read_csv("../../dataset/genre_and_votes.csv")
 
 s = dataset_reviews['Id'].unique()
-
-
 
 #Character names word cloud
 # text = ""
@@ -149,6 +151,27 @@ s = dataset_reviews['Id'].unique()
 # plt.yticks(fontsize=14)
 # plt.show()   
     
+
+#Book language detection
+def get_lang_detector(nlp, name):
+    return LanguageDetector()
+
+
+nlp = spacy.load("en_core_web_sm")
+nlp.max_length = 10000000 # or higher
+Language.factory("language_detector_reviews_2", func= get_lang_detector)
+nlp.add_pipe('language_detector_reviews_2', last=True)
+
+
+languages = {}
+for title in dataset["original_title"]:
+    doc = nlp(title)
+    # document level language detection. Think of it like average language of the document!
+    # sentence level language detection
+    for sent in doc.sents: # For each sentence
+        print(sent, sent._.language)
+        languages[title] = sent._.language
+        
     
     
     
