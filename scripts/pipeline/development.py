@@ -23,7 +23,7 @@ dataset_awards = pandas.read_csv("../../dataset/awards.csv")
 dataset_characters = pandas.read_csv("../../dataset/characters.csv")
 dataset_genres = pandas.read_csv("../../dataset/genre_and_votes.csv")
 
-s = dataset_reviews['Id'].unique()
+dataset_langs = pandas.read_csv("../../statistics/descriptions_languages.csv")
 
 #Character names word cloud
 # text = ""
@@ -153,25 +153,46 @@ s = dataset_reviews['Id'].unique()
     
 
 #Book language detection
-def get_lang_detector(nlp, name):
-    return LanguageDetector()
+#Generate language CSV
+# def get_lang_detector(nlp, name):
+#     return LanguageDetector()
 
 
-nlp = spacy.load("en_core_web_sm")
-nlp.max_length = 10000000 # or higher
-Language.factory("language_detector_reviews_2", func= get_lang_detector)
-nlp.add_pipe('language_detector_reviews_2', last=True)
+# nlp = spacy.load("en_core_web_sm")
+# nlp.max_length = 10000000 # or higher
+# Language.factory("language_detector_reviews_2", func= get_lang_detector)
+# nlp.add_pipe('language_detector_reviews_2', last=True)
 
 
-languages = {}
-for title in dataset["original_title"]:
-    doc = nlp(title)
-    # document level language detection. Think of it like average language of the document!
-    # sentence level language detection
-    for sent in doc.sents: # For each sentence
-        print(sent, sent._.language)
-        languages[title] = sent._.language
+# dataset_languages = pandas.DataFrame(dataset["id"])
+# languages = []
+# for desc in dataset["description"]:
+#     doc = nlp(desc)
+#     # document level language detection. Think of it like average language of the document!
+#     # sentence level language detection
+#     print(doc, doc._.language)
+#     languages.append(doc._.language['language'])
         
+        
+# dataset_languages["language"] = languages
+        
+# dataset_languages.to_csv('../../statistics/descriptions_languages.csv', index = False)
+        
+#Generate graph (read from previous csv to )
+
+lang_dict = dataset_langs["language"].value_counts().to_dict()
+
+fig = plt.figure(figsize=(16,9))
+ax = fig.add_axes([0,0,1,1])
+ax.bar(lang_dict.keys(), lang_dict.values())
+plt.title('Description language', fontsize=20)
+plt.xlabel('Languages', fontsize=16)
+plt.ylabel('Number of Books', fontsize=16)
+plt.xticks(rotation=90, fontsize=14)
+plt.yticks(fontsize=14)
+ax.ticklabel_format(style='plain', axis='y')
+ax.set_yscale('log')
+plt.show()
     
     
     
