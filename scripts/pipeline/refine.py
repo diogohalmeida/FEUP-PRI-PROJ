@@ -54,7 +54,11 @@ dataset = dataset[~dataset.id.isin(missing)]
 
 print("After removing books that are not in review dataset: " + str(len(dataset)))
 
-#Delete books from recommended and series cells that were removed before
+#Fix ISBN (make it a string)
+dataset["isbn"] = dataset["isbn"].map(str)
+
+
+# #Delete books from recommended and series cells that were removed before
 to_delete = list()  # this will speed things up doing only 1 delete
 for id, row in dataset.iterrows():
     if(not pandas.isnull(row.books_in_series)):

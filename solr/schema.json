@@ -1,0 +1,14 @@
+{
+    "add-field": [
+        {
+            "name": "isbn",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "isbn13",
+            "type": "string",
+            "indexed": true
+        }   
+    ]
+}

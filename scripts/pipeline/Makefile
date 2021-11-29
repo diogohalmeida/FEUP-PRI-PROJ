@@ -17,11 +17,11 @@ separate_awards: separate_genres_and_votes
 separate_genres_and_votes: load_and_refine
 	python3 ./generate_genres.py
 
-load_and_refine: reviews_scrapper
+load_and_refine: requirements
 	python3 ./refine.py
 	
-reviews_scrapper: requirements
-	python3 ../scrape-scripts/reviews.py
+#reviews_scrapper:
+#	python3 ../scrape-scripts/reviews.py
 	
 requirements:        
 	pip install -r requirements.txt
