@@ -1,5 +1,120 @@
 {
+    "add-field-type": [
+        {
+            "name":"comma_separated",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.PatternTokenizerFactory",
+                    "pattern":",*\\s+"
+                },
+                "filters":[
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.PatternTokenizerFactory",
+                    "pattern":",*\\s+"
+                },
+                "filters":[
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        }
+    ],
+
     "add-field": [
+        {
+            "name": "title",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "link",
+            "type": "string",
+            "indexed": false
+        },
+        {
+            "name": "series",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "cover_link",
+            "type": "string",
+            "indexed": false
+        },
+        {
+            "name": "author",
+            "type": "comma_separated",
+            "indexed": true
+        },
+        {
+            "name": "author_link",
+            "type": "string",
+            "indexed": false
+        },
+        {
+            "name": "rating_count",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "average_rating",
+            "type": "pfloat",
+            "indexed": false
+        },
+        {
+            "name": "five_star_ratings",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "four_star_ratings",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "three_star_ratings",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "two_star_ratings",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "one_star_ratings",
+            "type": "pint",
+            "indexed": false
+        },
+        {
+            "name": "number_of_pages",
+            "type": "pfloat",
+            "indexed": true
+        },
+        {
+            "name": "date_published",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "publisher",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "original_title",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "genre_and_votes",
+            "type": "comma_separated",
+            "indexed": true
+        },
         {
             "name": "isbn",
             "type": "string",
@@ -9,6 +124,46 @@
             "name": "isbn13",
             "type": "string",
             "indexed": true
-        }   
+        },
+        {
+            "name": "settings",
+            "type": "string",
+            "indexed": true
+        },
+        {
+            "name": "characters",
+            "type": "comma_separated",
+            "indexed": true
+        },
+        {
+            "name": "awards",
+            "type": "comma_separated",
+            "indexed": true
+        },
+        {
+            "name": "amazon_redirect_link",
+            "type": "string",
+            "indexed": false
+        },
+        {
+            "name": "worldcat_redirect_link",
+            "type": "string",
+            "indexed": false
+        },
+        {
+            "name": "recommended_books",
+            "type": "comma_separated",
+            "indexed": true
+        },
+        {
+            "name": "books_in_series",
+            "type": "comma_separated",
+            "indexed": true
+        },
+        {
+            "name": "description",
+            "type": "string",
+            "indexed": true
+        }
     ]
 }
