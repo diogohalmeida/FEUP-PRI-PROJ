@@ -2,6 +2,8 @@
 
 precreate-core books
 
+sleep 5
+
 # Start Solr in background mode so we can use the API to upload the schema
 solr start
 
