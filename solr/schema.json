@@ -1,23 +1,23 @@
 {
     "add-field-type": [
         {
-            "name":"comma_separated",
+            "name":"standard",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
-                    "class":"solr.PatternTokenizerFactory",
-                    "pattern":",*\\s+"
+                    "class":"solr.StandardTokenizerFactory"
                 },
                 "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
             },
             "queryAnalyzer":{
                 "tokenizer":{
-                    "class":"solr.PatternTokenizerFactory",
-                    "pattern":",*\\s+"
+                    "class":"solr.StandardTokenizerFactory"
                 },
                 "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
             }
@@ -27,7 +27,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "name": "series",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
@@ -47,7 +47,7 @@
         },
         {
             "name": "author",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
@@ -92,27 +92,27 @@
         },
         {
             "name": "number_of_pages",
-            "type": "pfloat",
+            "type": "pint",
             "indexed": true
         },
         {
             "name": "date_published",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "publisher",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "original_title",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "genre_and_votes",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
@@ -127,17 +127,17 @@
         },
         {
             "name": "settings",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "characters",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "awards",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
@@ -152,17 +152,17 @@
         },
         {
             "name": "recommended_books",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "books_in_series",
-            "type": "comma_separated",
+            "type": "standard",
             "indexed": true
         },
         {
             "name": "description",
-            "type": "string",
+            "type": "standard",
             "indexed": true
         }
     ]
