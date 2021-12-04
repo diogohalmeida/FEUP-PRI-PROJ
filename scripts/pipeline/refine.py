@@ -65,26 +65,28 @@ dataset["number_of_pages"] = dataset["number_of_pages"].map(int)
 
 # dataset["genre_and_votes"] = genre_and_votes_list
 
-
+ids = dataset["id"].tolist()
 #Delete books from recommended and series cells that were removed before
 to_delete = list()  # this will speed things up doing only 1 delete
 for id, row in dataset.iterrows():
     if(not pandas.isnull(row.books_in_series)):
         series_ids = [int(s) for s in str(row.books_in_series).split(',')]
+        final_list = []
         for serie_id in series_ids:
-            if(serie_id not in ids):
-                series_ids.remove(serie_id)
-        row["books_in_series"] = series_ids
+            if(serie_id in ids):
+                final_list.append(serie_id)
+        row["books_in_series"] = final_list
             
 
 #to_delete = list()  # this will speed things up doing only 1 delete
 for id, row in dataset.iterrows():
     if(not pandas.isnull(row.recommended_books)):
         series_ids = [int(s) for s in str(row.recommended_books).split(',')]
+        final_list = []
         for serie_id in series_ids:
-              if(serie_id not in ids):
-                  series_ids.remove(serie_id)
-        row["recommended_books"] = series_ids
+            if(serie_id in ids):
+                final_list.append(serie_id)
+        row["recommended_books"] = final_list
 
 
 dataset.to_csv('../../dataset/goodreads_books_clean.csv', index= False)
