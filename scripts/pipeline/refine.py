@@ -67,26 +67,22 @@ dataset["number_of_pages"] = dataset["number_of_pages"].map(int)
 
 ids = dataset["id"].tolist()
 #Delete books from recommended and series cells that were removed before
-to_delete = list()  # this will speed things up doing only 1 delete
-for id, row in dataset.iterrows():
-    if(not pandas.isnull(row.books_in_series)):
-        series_ids = [int(s) for s in str(row.books_in_series).split(',')]
-        final_list = []
-        for serie_id in series_ids:
-            if(serie_id in ids):
-                final_list.append(serie_id)
-        row["books_in_series"] = final_list
-            
 
-#to_delete = list()  # this will speed things up doing only 1 delete
-for id, row in dataset.iterrows():
-    if(not pandas.isnull(row.recommended_books)):
-        series_ids = [int(s) for s in str(row.recommended_books).split(',')]
-        final_list = []
-        for serie_id in series_ids:
-            if(serie_id in ids):
-                final_list.append(serie_id)
-        row["recommended_books"] = final_list
+def remove_ids(available_ids, ids_string):
+    if pandas.isnull(ids_string):
+        return ""
+    ids_list = ids_string.split(',')
+    ids_list = list(set(map(int, ids_list)))
+    final_list = []
+    for i in ids_list:
+        if i in available_ids:
+            final_list.append(i)
+    str_list = [str(i) for i in final_list]
+    return ",".join(str_list)
+    
+
+dataset['recommended_books'] = dataset['recommended_books'].apply(lambda x: remove_ids(ids, x))
+dataset['books_in_series'] = dataset['books_in_series'].apply(lambda x: remove_ids(ids, x))
 
 
-dataset.to_csv('../../dataset/goodreads_books_clean.csv', index= False)
+dataset.to_csv('../../solr/goodreads_books_clean.csv', index= False)
