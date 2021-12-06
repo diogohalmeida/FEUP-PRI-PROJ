@@ -15,11 +15,22 @@ def replace_id_by_title(dictionary, ids_string):
     return titles_str
 
 
-books = pandas.read_csv("./goodreads_books_clean.csv", low_memory=False)
+books = pandas.read_csv("../dataset/goodreads_books_clean.csv", low_memory=False)
+reviews = pandas.read_csv("../dataset/goodreads_reviews.csv")
 
 dictionary = dict(zip(books.id, books.title))
 
 books['recommended_books'] = books['recommended_books'].apply(lambda x: replace_id_by_title(dictionary, x))
 books['books_in_series'] = books['books_in_series'].apply(lambda x: replace_id_by_title(dictionary, x))
 
+reviews["Id"].replace(dictionary, inplace=True)
 
+reviews.rename({'Id': 'book', ' Reviews': 'text', ' Users':'user', ' Dates':'date_published'}, axis=1, inplace=True)
+
+reviews["type"] = "review"
+books["type"] = "book"
+
+
+clean = pandas.concat([books, reviews])
+
+clean.to_csv('goodreads_data_clean.csv', index=False)
