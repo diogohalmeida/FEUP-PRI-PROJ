@@ -85,4 +85,4 @@ dataset['recommended_books'] = dataset['recommended_books'].apply(lambda x: remo
 dataset['books_in_series'] = dataset['books_in_series'].apply(lambda x: remove_ids(ids, x))
 
 
-dataset.to_csv('../../solr/goodreads_books_clean.csv', index= False)
+dataset.to_csv('../../dataset/goodreads_books_clean.csv', index= False)
