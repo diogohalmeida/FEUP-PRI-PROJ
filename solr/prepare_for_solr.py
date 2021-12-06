@@ -30,7 +30,7 @@ reviews.rename({'Id': 'book', ' Reviews': 'text', ' Users':'user', ' Dates':'dat
 reviews["type"] = "review"
 books["type"] = "book"
 
+reviews['user'].replace({"Vicky phenkos""":'Vicky phenkos'}, inplace=True)
 
-clean = pandas.concat([books, reviews])
-
-clean.to_csv('goodreads_data_clean.csv', index=False)
+reviews.to_csv('./goodreads_reviews_solr.csv', index = False)
+books.to_csv('./goodreads_books_solr.csv', index = False)
