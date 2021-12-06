@@ -1,3 +1,5 @@
 dataset
 goodreads_books_clean.csv
 goodreads_data_clean.csv
+goodreads_books_solr.csv
+goodreads_reviews_solr.csv

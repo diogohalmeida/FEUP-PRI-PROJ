@@ -2,7 +2,7 @@
 
 precreate-core books
 
-sleep 5
+sleep 10
 
 # Start Solr in background mode so we can use the API to upload the schema
 solr start
@@ -13,7 +13,10 @@ curl -X POST -H 'Content-type:application/json' \
     http://localhost:8983/solr/books/schema
 
 # Populate collection
-bin/post -c books /data/goodreads_data_clean.csv
+bin/post -c books /data/goodreads_books_solr.csv
+
+# Populate collection
+bin/post -c books /data/goodreads_reviews_solr.csv
 
 # Restart in foreground mode so we can access the interface
 solr restart -f
