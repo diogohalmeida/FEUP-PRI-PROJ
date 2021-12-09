@@ -156,6 +156,7 @@ colors = ['#440154ff','#481567ff','#482677ff','#453781ff','#404788ff', '#39568cf
 # plt.ylabel('Count', fontsize=16)
 # plt.xticks(fontsize=14)
 # plt.yticks(fontsize=14)
+# plt.xlim([1850, 2022])
 # plt.show()   
     
 
@@ -329,6 +330,5 @@ colors = ['#440154ff','#481567ff','#482677ff','#453781ff','#404788ff', '#39568cf
 # ax.legend().set_visible(False)
 # plt.legend(labels=books_series_dict.keys())
 # plt.show()  
-
 
 
