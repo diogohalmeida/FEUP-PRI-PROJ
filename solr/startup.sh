@@ -2,10 +2,10 @@
 
 precreate-core books
 
-sleep 10
-
 # Start Solr in background mode so we can use the API to upload the schema
 solr start
+
+sleep 10
 
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
