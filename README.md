@@ -1,2 +1,2 @@
 # FEUP-PRI-PROJ
-Project for Information Processing and Recovery Class
+Project for Information Retrieval and Processing Class
