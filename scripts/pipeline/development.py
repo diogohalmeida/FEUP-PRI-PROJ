@@ -97,28 +97,28 @@ colors = ['#440154ff','#481567ff','#482677ff','#453781ff','#404788ff', '#39568cf
 
 
 #Bar plot of genres with >1.000 occurences in books
-# genres_dict = {}  
-# for column in dataset_genres:
-#     genre_count = 0
-#     if column != "id":
-#         for cell in dataset_genres[column]:
-#             if cell > 0:
-#                 genre_count = genre_count + 1
-#     if genre_count > 1000:
-#         genres_dict[column] = genre_count
+genres_dict = {}  
+for column in dataset_genres:
+    genre_count = 0
+    if column != "id":
+        for cell in dataset_genres[column]:
+            if cell > 0:
+                genre_count = genre_count + 1
+    if genre_count > 1000:
+        genres_dict[column] = genre_count
     
-# genres_dict_sorted = dict(sorted(genres_dict.items(), key=lambda item: item[1], reverse=True))
+genres_dict_sorted = dict(sorted(genres_dict.items(), key=lambda item: item[1], reverse=True))
     
-# fig = plt.figure(figsize=(16,9))
-# ax = fig.add_axes([0,0,1,1])
-# ax.bar(genres_dict_sorted.keys(),genres_dict_sorted.values(), color = "#1f968bff")
-# plt.title('Genres present in more than 1.000 books', fontsize=20)
-# plt.xlabel('Genres', fontsize=16)
-# plt.ylabel('Number of Books', fontsize=16)
-# plt.xticks(rotation=90, fontsize=14)
-# plt.yticks(fontsize=14)
-# ax.ticklabel_format(style='plain', axis='y')
-# plt.show()
+fig = plt.figure(figsize=(16,9))
+ax = fig.add_axes([0,0,1,1])
+ax.bar(genres_dict_sorted.keys(),genres_dict_sorted.values(), color = "#1f968bff")
+plt.title('Genres present in more than 1.000 books', fontsize=20)
+plt.xlabel('Genres', fontsize=16)
+plt.ylabel('Number of Books', fontsize=16)
+plt.xticks(rotation=90, fontsize=14)
+plt.yticks(fontsize=14)
+ax.ticklabel_format(style='plain', axis='y')
+plt.show()
     
    
 #Rating distribution histogram
@@ -214,6 +214,7 @@ colors = ['#440154ff','#481567ff','#482677ff','#453781ff','#404788ff', '#39568cf
 # plt.ylabel('Count', fontsize=16)
 # plt.xticks(fontsize=14)
 # plt.yticks(fontsize=14)
+# plt.xlim([1850, 2021])
 # plt.show() 
 
 
