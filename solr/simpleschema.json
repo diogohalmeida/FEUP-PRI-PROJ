@@ -1,0 +1,34 @@
+{
+    "add-field": [
+        {
+            "name": "isbn",
+            "type": "string",
+            "indexed": true,
+			"stored": true
+        },
+        {
+            "name": "isbn13",
+            "type": "string",
+            "indexed": true,
+			"stored": true
+        },
+        {
+            "name": "awards",
+            "type": "string",
+            "indexed": true,
+			"stored": true
+        },
+		        {
+            "name": "characters",
+            "type": "string",
+            "indexed": true,
+			"stored": true
+        },
+		        {
+            "name": "settings",
+            "type": "string",
+            "indexed": true,
+			"stored": true
+        }
+    ]
+}

@@ -28,142 +28,177 @@
         {
             "name": "title",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "link",
             "type": "string",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "series",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "cover_link",
             "type": "string",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "author",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "author_link",
             "type": "string",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "rating_count",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "average_rating",
             "type": "pfloat",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "five_star_ratings",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "four_star_ratings",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "three_star_ratings",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "two_star_ratings",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "one_star_ratings",
             "type": "pint",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "number_of_pages",
             "type": "pint",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "date_published",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "publisher",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "original_title",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "genre_and_votes",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "isbn",
             "type": "string",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "isbn13",
             "type": "string",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "settings",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "characters",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "awards",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "amazon_redirect_link",
             "type": "string",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "worldcat_redirect_link",
             "type": "string",
-            "indexed": false
+            "indexed": false,
+			"stored": true
         },
         {
             "name": "recommended_books",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "books_in_series",
             "type": "standard",
-            "indexed": true
+            "indexed": true,
+			"stored": true
         },
         {
             "name": "description",
             "type": "standard",
-            "indexed": true
-        }
+            "indexed": true,
+			"stored": true
+        },
+		{
+			"name": "reviews",
+			"type": "text_en",
+			"indexed": true,
+			"stored": true,
+			"multiValued": true,
+		}
     ]
 }
