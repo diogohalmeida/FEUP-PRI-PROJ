@@ -13,10 +13,10 @@ curl -X POST -H 'Content-type:application/json' \
     http://localhost:8983/solr/books/schema
 
 # Populate collection
-bin/post -c books /data/goodreads_books_solr.csv
+bin/post -c books /data/data.json
 
 # Populate collection
-bin/post -c books /data/goodreads_reviews_solr.csv
+#bin/post -c books /data/goodreads_reviews_solr.csv
 
 # Restart in foreground mode so we can access the interface
 solr restart -f
