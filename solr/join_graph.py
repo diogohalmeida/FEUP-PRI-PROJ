@@ -10,16 +10,16 @@ from itertools import cycle
 # setup plot details
 colors = cycle(['#95d840ff','#287d8eff','#440154ff'])
 
-QRELS_FILE = "./queries/query4/query4.txt"
+QRELS_FILE = "./queries/query2/query2.txt"
 
-QUERY_URL_NORMAL = "http://localhost:8983/solr/books/select?defType=edismax&fq=description%3Akingdom&fq=genre_and_votes%3Achildrens&fq=genre_and_votes%3Afantasy&indent=true&q.op=OR&q=easy%20read&qf=reviews&rows=74"
-QUERY_URL_BOOSTED = "http://localhost:8983/solr/books/select?defType=edismax&fq=description%3Akingdom&fq=genre_and_votes%3Achildrens&fq=genre_and_votes%3Afantasy&indent=true&pf=reviews%5E5&ps=5&q.op=OR&q=easy%20read&qf=reviews%5E2&rows=74"
+QUERY_URL_NORMAL = "http://localhost:8983/solr/books/select?defType=edismax&indent=true&q.op=OR&q=comics%20AND%20(%22spider-man%22%20OR%20spiderman)&qf=title%20genre_and_votes%20description%20characters&rows=10"
+QUERY_URL_BOOSTED = "http://localhost:8983/solr/books/select?defType=edismax&indent=true&q.op=OR&q=comics%20AND%20(%22spider-man%22%20OR%20%22Peter%20Parker%22)&qf=title%5E2%20genre_and_votes%5E2%20description%5E1%20characters%5E3&rows=10"
 
 # Read qrels to extract relevant documents
 relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
 # Get query results from Solr instance
 
-results_noschema = json.load(open('./queries/query3/noschema.json', encoding="utf8"))['response']['docs']
+results_noschema = json.load(open('./queries/query2/noschema.json', encoding="utf8"))['response']['docs']
 results_normal = requests.get(QUERY_URL_NORMAL).json()['response']['docs']
 results_boosted = requests.get(QUERY_URL_BOOSTED).json()['response']['docs']
 
@@ -51,7 +51,7 @@ for results, color in zip(results_list, colors):
     precision_recall_match = {k: v for k,v in zip(recall_values, precision_values)}
 
     # Extend recall_values to include traditional steps for a better curve (0.1, 0.2 ...)
-    recall_values.extend([step for step in np.arange(0.1, 1.1, 0.1) if step not in recall_values])
+    recall_values.extend([step for step in np.arange(0, 1.1, 0.1) if step not in recall_values])
     recall_values = sorted(set(recall_values))
 
     # Extend matching dict to include these new intermediate steps
@@ -64,11 +64,11 @@ for results, color in zip(results_list, colors):
 
     disp = PrecisionRecallDisplay([precision_recall_match.get(r) for r in recall_values], recall_values)
     if(i==0):
-        disp.plot(ax=ax, name=f"Precision-recall without schema", color=color, linewidth=1.5)
+        disp.plot(ax=ax, name=f"Precision-recall without schema", color=color, linewidth=3)
     elif(i==1):
         disp.plot(ax=ax, name=f"Precision-recall without boost", color=color, linewidth=1.5)
     elif(i==2):
-        disp.plot(ax=ax, name=f"Precision-recall with boost", color=color, linewidth=1.5)
+        disp.plot(ax=ax, name=f"Precision-recall with boost", color=color, linewidth=1)
     i+=1
 
 # add the legend for the iso-f1 curves
@@ -78,4 +78,4 @@ handles, labels = disp.ax_.get_legend_handles_labels()
 ax.legend(handles=handles, labels=labels, loc="best")
 ax.set_title("Precision-Recall curve to Query 4")
 
-plt.savefig('precision_recall.png')
+plt.savefig('precision_recall.pdf')
