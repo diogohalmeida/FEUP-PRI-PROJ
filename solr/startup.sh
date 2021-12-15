@@ -7,10 +7,13 @@ solr start
 
 sleep 10
 
+cp /data/synonyms.txt /var/solr/data/books/conf
+
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
-    --data-binary @/data/schema.json \
+    --data-binary @/data/simpleschema.json \
     http://localhost:8983/solr/books/schema
+	
 
 # Populate collection
 bin/post -c books /data/data.json
