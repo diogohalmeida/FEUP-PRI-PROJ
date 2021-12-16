@@ -11,7 +11,7 @@ cp /data/synonyms.txt /var/solr/data/books/conf
 
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
-    --data-binary @/data/simpleschema.json \
+    --data-binary @/data/schema.json \
     http://localhost:8983/solr/books/schema
 	
 
