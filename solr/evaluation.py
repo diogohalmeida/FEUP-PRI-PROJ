@@ -6,8 +6,8 @@ import json
 import requests
 import pandas as pd
 
-QRELS_FILE = "queries/query4/query4.txt" # relevant items
-QUERY_URL = "http://localhost:8983/solr/books/select?defType=edismax&fq=description%3Akingdom&fq=genre_and_votes%3Achildrens&fq=genre_and_votes%3Afantasy&indent=true&q.op=OR&q=easy%20read&qf=reviews"
+QRELS_FILE = "queries/query2/query2.txt" # relevant items
+QUERY_URL = "http://localhost:8983/solr/books/select?defType=edismax&indent=true&q.op=OR&q=comics%20AND%20(%22spider-man%22%20OR%20%22Peter%20Parker%22)&qf=title%20genre_and_votes%20description%20characters"
 # Read qrels to extract relevant documents
 relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
 # Get query results from Solr instance
@@ -109,8 +109,8 @@ _, ax = plt.subplots(figsize=(16, 9))
 
 disp = PrecisionRecallDisplay([precision_recall_match.get(r) for r in recall_values], recall_values)
 disp.plot(ax=ax, color='#1f968bff')
-ax.set_title("Precision-Recall curve for Query 4 - No Schema")
-# ax.set_title("Precision-Recall curve for Query 4 - With Schema Without Boost")
-# ax.set_title("Precision-Recall curve for Query 4 - With Schema With Boost")
-plt.ylim([-0.05,1.05])
+ax.set_title("Precision-Recall curve for Query 2 - No Schema")
+# ax.set_title("Precision-Recall curve for Query 2 - With Schema Without Boost")
+# ax.set_title("Precision-Recall curve for Query 2 - With Schema With Boost")
+plt.ylim([0.45,1.05])
 plt.savefig('precision_recall.pdf')
