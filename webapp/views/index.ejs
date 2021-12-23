@@ -1,0 +1,13 @@
+<%- include('partials/_header') %>
+
+    <% if (locals.data) { %>
+        <h3>You searched for: <%= data.userQuery %></h3>
+        <ul>
+            <% data.books.forEach(function(book) { %>
+                <%- include('partials/_book', {book: book}); %>
+            <% }) %>
+        </ul>
+    <% } %>
+
+
+<%- include('partials/_footer') %>
