@@ -1,7 +1,7 @@
 <%- include('partials/_header') %>
 
     <% if (locals.data) { %>
-        <h2 class="text-white mb-3" style="text-shadow: 1px 1px #1a1a1a;">Search Results for: "<%= data.userQuery %>"</h2>
+        <h2 class="text-white mb-3" style="background: rgba(0, 0, 0, 0.7); border-radius: 4px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Search Results for: "<%= data.userQuery %>"</h2>
         <div class="container row">
         <% data.books.forEach(function(book) { %>
             <%- include('partials/_book', {book: book}); %>

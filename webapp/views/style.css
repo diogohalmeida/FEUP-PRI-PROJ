@@ -1,0 +1,114 @@
+:root{
+    --clr-neutral-900: hsl(207, 19%, 9%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-accent-400: hsl(39, 69%, 35%);
+}
+
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+
+.search-button{
+    background-color: #5a441c !important;
+    border-top-left-radius: 0 !important; 
+    border-bottom-left-radius: 0 !important;
+    border-color: grey !important;
+}
+
+.search-button:hover{
+    background-color: #b48838 !important;
+}
+
+
+
+.book{
+    color: var(--clr-neutral-100);
+    background-size: 210px 300px;
+    width: 210px;
+    height: 300px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    border-radius: 0.3em;
+
+    transition: transform 500ms ease;
+}
+
+
+.book:hover{
+    transform: scale(1.05);
+}
+
+.book-content {
+    --padding: 0.6rem;
+    padding: var(--padding);
+    background: linear-gradient(
+    hsl(0 0% 0% /0),
+    hsl(20 0% 0% / 0.5) 20%,
+    hsl(0 0% 0% /1));
+    overflow: hidden;
+    transform: translateY(50%);
+    transition: transform 500ms ease;
+}
+
+.book:hover .book-content{
+    transform: translateY(0);
+    transition-delay: 500ms;
+}
+
+.book-content > *:not(.book-title) {
+    opacity: 0;
+    transition: opacity 500ms linear;
+}
+
+.book:hover .book-content > *:not(.book-title){
+    transition-delay: 500ms;
+    opacity: 1;
+}
+
+.book-body {
+    font-size: 100%;
+}
+
+.book-title{
+    position: relative;
+    width: auto;
+    font-size: 120%;
+}
+
+.book-title::after{
+    content: "";
+    position: absolute;
+    height: 3px;
+    left: calc(var(--padding) * -1);
+    bottom: -3px;
+    width: calc(100%);
+    background: var(--clr-accent-400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms ease;
+
+}
+
+
+.book:hover .book-title::after{
+    transform: scaleX(1);
+}
+
+.button{
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+    padding: 0.5em 1.25em;
+    border-radius: 0.3rem;
+}
+
+.button:hover, .button:focus{
+    background-color: var(--clr-neutral-100);
+    color: black;
+    background-color: #b48838;
+}
