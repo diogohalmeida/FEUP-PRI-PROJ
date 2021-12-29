@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/logo_tiny.svg" />
+    <link rel="stylesheet" href="views/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goodreads Book Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      html *
+      {
+          font-family: Calibri !important;
+      }
+
+      .banner-image {
+        background-image: url('assets/bg.jpg');
+        background-size: cover;
+      }
+      .logo {
+        background-image: url('assets/logo.svg');
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar  -->
+    <nav class="navbar bg-dark p-md-3">
+      <div class="container-fluid row">
+        <div class="col-8">
+          <img class = "col-2 my-auto" src = "assets/logo.svg" alt="">
+          <p class="col my-auto" style="color:grey">Book Search</p>
+        </div>
+        <form class="search-form d-flex col-4" action="search" method = "GET">
+          <input class="form-control" style="border-top-right-radius:0; border-bottom-right-radius: 0; border-color: grey" type="search" placeholder="Search for a Book" name="query" aria-label="Search">
+          <button class="search-button btn" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="24" height="24"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M64.5,14.33333c-27.6214,0 -50.16667,22.54527 -50.16667,50.16667c0,27.6214 22.54527,50.16667 50.16667,50.16667c12.52732,0 23.97256,-4.67249 32.7819,-12.31771l3.05143,3.05143v9.26628l43,43l14.33333,-14.33333l-43,-43h-9.26628l-3.05143,-3.05143c7.64521,-8.80934 12.31771,-20.25458 12.31771,-32.7819c0,-27.6214 -22.54527,-50.16667 -50.16667,-50.16667zM64.5,28.66667c19.87509,0 35.83333,15.95824 35.83333,35.83333c0,19.87509 -15.95825,35.83333 -35.83333,35.83333c-19.87509,0 -35.83333,-15.95825 -35.83333,-35.83333c0,-19.87509 15.95824,-35.83333 35.83333,-35.83333z"></path></g></g></svg>
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <% if (locals.data) { %>
+        <div class="book-content">
+            <div><%= data.book.title %></div>
+            <div><%= data.book.link %></div>
+            <div><%= data.book.series %></div>
+            <div><%= data.book.cover_link %></div>
+            <div><%= data.book.author %></div>
+            <div><%= data.book.author_link %></div>
+            <div><%= data.book.rating_count %></div>
+            <div><%= data.book.average_rating %></div>
+            <div><%= data.book.five_star_ratings %></div>
+            <div><%= data.book.four_star_ratings %></div>
+            <div><%= data.book.three_star_ratings %></div>
+            <div><%= data.book.two_star_ratings %></div>
+            <div><%= data.book.one_star_ratings %></div>
+            <div><%= data.book.number_of_pages %></div>
+            <div><%= data.book.date_published %></div>
+            <div><%= data.book.publisher %></div>
+            <div><%= data.book.original_title %></div>
+            <div><%= data.book.genre_and_votes %></div>
+            <div><%= data.book.isbn %></div>
+            <div><%= data.book.isbn13 %></div>
+            <div><%= data.book.settings %></div>
+            <div><%= data.book.characters %></div>
+            <div><%= data.book.awards %></div>
+            <div><%= data.book.amazon_redirect_link %></div>
+            <div><%= data.book.worldcat_redirect_link %></div>
+            <div><%= data.book.recommended_books %></div>
+            <div><%= data.book.books_in_series %></div>
+            <div><%= data.book.description %></div>
+            <div><%= data.book.reviews %></div>
+        </div>
+    <% } %>
+
+</body>
+</html>
+

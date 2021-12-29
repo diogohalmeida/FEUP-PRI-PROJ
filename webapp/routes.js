@@ -44,5 +44,26 @@ router.get("/search", (req,res) => {
 
 })
 
+router.get("/book/:id", (req, res) => {
+
+    const book_id = req.params.id
+
+    const searchQuery = client.query().q('id:' + book_id)
+
+    client.search(searchQuery, function(err, result){
+        if (err) {
+            console.log(err)
+            return
+        }
+        const response = result.response
+        
+        res.render("book", {data: {
+            book: response.docs[0]
+            }
+        })
+    })
+    
+})
+
 
 module.exports = router
