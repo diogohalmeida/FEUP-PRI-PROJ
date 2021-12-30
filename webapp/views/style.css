@@ -212,3 +212,17 @@ a:hover{
 .book-info-details, #book-awards{
     font-size: small;
 }
+
+.progress{
+    border-radius: 1em!important;
+}
+
+.star-label{
+    font-size: x-small;
+    font-weight: bold;
+}
+
+.individual-star-count{
+    font-size: x-small;
+    color: lightgray;
+}
