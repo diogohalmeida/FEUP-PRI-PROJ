@@ -56,11 +56,50 @@ router.get("/book/:id", (req, res) => {
             return
         }
         const response = result.response
-        
-        res.render("book", {data: {
-            book: response.docs[0]
-            }
+        recommended_books_q = response.docs[0]["recommended_books"].replaceAll(","," id:")
+        recommended_books_q = "id:" + recommended_books_q
+        console.log(recommended_books_q)
+        const searchQueryRB = client.query()
+        .qop("OR")
+        .q(recommended_books_q)
+        .addParams({
+            wt:"json",
+            indent: true,
         })
+
+        client.search(searchQueryRB, function(err, resultRB){
+            if (err) {
+                console.log(err)
+                return
+            }
+            const responseRB = resultRB.response
+            books_in_series_q = response.docs[0]["books_in_series"].replaceAll(","," id:")
+            books_in_series_q = "id:" + books_in_series_q
+            console.log(books_in_series_q)
+            const searchQueryBIS = client.query()
+            .qop("OR")
+            .q(books_in_series_q)
+            .addParams({
+                wt:"json",
+                indent: true,
+            })
+            
+            client.search(searchQueryBIS, function(err, resultBIS){
+                if (err) {
+                    console.log(err)
+                    return
+                }
+                const responseBIS = resultBIS.response
+                res.render("book", {data: {
+                    book: response.docs[0],
+                    recommended_books: responseRB.docs,
+                    books_in_series: responseBIS.docs
+                    }
+                })
+            })
+        })
+
+        
     })
     
 })
