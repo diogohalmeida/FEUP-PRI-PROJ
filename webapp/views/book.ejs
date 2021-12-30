@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class = "book-info-bg p-4 me-5 mt-5 col overflow-auto">
-      <div class = "book-info overflow-auto">
+      <div class = "book-info overflow-hidden">
         <h5 class = "mb-1" id="book-series"><%=series%></h5>
         <h1 class = "mb-1" id= "book-title" ><%= data.book.title%></h1>
         <div class="author-details d-flex">
@@ -70,35 +70,35 @@
             <div id = "book-rating_count"><%= data.book.rating_count %> Ratings</div>
           </div>
           <div class= "star-graph d-flex flex-column ms-5">
-            <div class="bar mb-1 d-flex align-items-center">
+            <div class="bar d-flex align-items-center">
               <div class="star-label me-2">5 ⭐</div>
               <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%=five%>%" aria-valuenow="<%=five%>" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="individual-star-count"> <%=data.book.five_star_ratings%></div>
             </div>
-            <div class="bar mb-1 d-flex align-items-center">
+            <div class="bar d-flex align-items-center">
               <div class="star-label me-2">4 ⭐</div>
               <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%=four%>%" aria-valuenow="<%=four%>" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="individual-star-count"> <%=data.book.four_star_ratings%></div>
             </div>
-            <div class="bar mb-1 d-flex align-items-center">
+            <div class="bar d-flex align-items-center">
               <div class="star-label me-2">3 ⭐</div>
               <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%=three%>%" aria-valuenow="<%=three%>" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="individual-star-count"> <%=data.book.three_star_ratings%></div>
             </div>
-            <div class="bar mb-1 d-flex align-items-center">
+            <div class="bar d-flex align-items-center">
               <div class="star-label me-2">2 ⭐</div>
               <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%=two%>%" aria-valuenow="<%=two%>" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="individual-star-count"> <%=data.book.two_star_ratings%></div>
             </div>
-            <div class="bar mb-1 d-flex align-items-center">
+            <div class="bar d-flex align-items-center">
               <div class="star-label me-2">1 ⭐</div>
               <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%=one%>%" aria-valuenow="<%=one%>" aria-valuemin="0" aria-valuemax="100"></div>
@@ -143,7 +143,7 @@
             </div>
           </div>
           <div class="mb-4"></div>
-          <h5 class= "mb-3">Edition details</h5>
+          <h5 class= "edition-details mb-3">Edition details</h5>
           <div class="book-edition-details container p-0">
             <div class = "row mb-1">
               <div class = "col" style="color:lightgray;">Format</div>
@@ -158,8 +158,38 @@
               <div class= "col"><%= data.book.isbn13 %> (ISBN10: <%= data.book.isbn %>)</div>
             </div>
           </div>
-
-          
+          <%if (data.books_in_series.length > 0){%>
+            <div class="mb-4"></div>
+            <h5 class= "edition-details">More from this series</h5>
+            <div class="books_in_series-display d-flex overflow-auto">
+              <% data.books_in_series.forEach(function(book_in_series) { %>
+                <div class="container mb-4 mt-3 d-flex justify-content-center ">
+                  <div class= "book overflow" style="background-image: url(<%= book_in_series.cover_link %>);">
+                      <div class="book-content">
+                          <h2 class = "book-title "><%= book_in_series.title %></h2>
+                          <p class = "book-body"><%= book_in_series.author %></p>
+                          <a href="/book/<%= book_in_series.id%>" class="button">Learn More</a>
+                      </div>
+                  </div>
+                </div>
+              <% }) %>
+            </div>  
+          <%}%>
+          <div class="mb-4"></div>
+          <h5 class= "edition-details">Readers also enjoyed</h5>
+          <div class="recommended_books-display d-flex overflow-auto">
+            <% data.recommended_books.forEach(function(recommended_book) { %>
+              <div class="container mb-4 mt-3 d-flex justify-content-center">
+                <div class= "book" style="background-image: url(<%= recommended_book.cover_link %>);">
+                    <div class="book-content">
+                        <h2 class = "book-title "><%= recommended_book.title %></h2>
+                        <p class = "book-body"><%= recommended_book.author %></p>
+                        <a href="/book/<%= recommended_book.id%>" class="button">Learn More</a>
+                    </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
         </div>
         
       </div>
@@ -172,7 +202,5 @@
 
 <!--
 <div class="book-content">
-  <div><%= data.book.recommended_books %></div>
-  <div><%= data.book.books_in_series %></div>
   <div><%= data.book.reviews %></div>
 </div>-->
