@@ -28,6 +28,14 @@
     genres = genres.map(function (elem) {
     return elem.trim();
     });
+
+
+    //Handle ratings
+    five = (data.book.five_star_ratings / data.book.rating_count) * 100
+    four = (data.book.four_star_ratings / data.book.rating_count) * 100
+    three = (data.book.three_star_ratings / data.book.rating_count) * 100
+    two = (data.book.two_star_ratings / data.book.rating_count) * 100
+    one = (data.book.one_star_ratings / data.book.rating_count) * 100
 %>
     
     
@@ -53,11 +61,52 @@
           <a class = "ms-2" href="<%= data.book.author_link %>"><img src = "../assets/logo_tiny.svg" alt="" height = "20px"></a>
         </div>
         <div class="mb-4"></div>
-        <div class = "star-rating d-flex">
-          <h3 class = "mb-0 me-2" id = "book-average_rating"><%= data.book.average_rating %></h3>
-          <img src="../assets/star.svg" alt="" width="30px" height="30px">  
+        <div class="ratings d-flex">
+          <div class="star-rating-and-count">
+            <div class = "star-rating d-flex">
+              <h3 class = "mb-0 me-2" id = "book-average_rating"><%= data.book.average_rating %></h3>
+              <img src="../assets/star.svg" alt="" width="30px" height="30px"> 
+            </div>
+            <div id = "book-rating_count"><%= data.book.rating_count %> Ratings</div>
+          </div>
+          <div class= "star-graph d-flex flex-column ms-5">
+            <div class="bar mb-1 d-flex align-items-center">
+              <div class="star-label me-2">5 ⭐</div>
+              <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%=five%>%" aria-valuenow="<%=five%>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="individual-star-count"> <%=data.book.five_star_ratings%></div>
+            </div>
+            <div class="bar mb-1 d-flex align-items-center">
+              <div class="star-label me-2">4 ⭐</div>
+              <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%=four%>%" aria-valuenow="<%=four%>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="individual-star-count"> <%=data.book.four_star_ratings%></div>
+            </div>
+            <div class="bar mb-1 d-flex align-items-center">
+              <div class="star-label me-2">3 ⭐</div>
+              <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%=three%>%" aria-valuenow="<%=three%>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="individual-star-count"> <%=data.book.three_star_ratings%></div>
+            </div>
+            <div class="bar mb-1 d-flex align-items-center">
+              <div class="star-label me-2">2 ⭐</div>
+              <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%=two%>%" aria-valuenow="<%=two%>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="individual-star-count"> <%=data.book.two_star_ratings%></div>
+            </div>
+            <div class="bar mb-1 d-flex align-items-center">
+              <div class="star-label me-2">1 ⭐</div>
+              <div class="progress me-2" style="width: 8rem; height: 0.5rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%=one%>%" aria-valuenow="<%=one%>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="individual-star-count"> <%=data.book.one_star_ratings%></div>
+            </div>
+          </div>
         </div>
-        <div id = "book-rating_count"><%= data.book.rating_count %> Ratings</div>
         <div class="mb-4"></div>
         <div><%= data.book.description %></div> 
         <div class="mb-4"></div>
@@ -109,7 +158,10 @@
               <div class= "col"><%= data.book.isbn13 %> (ISBN10: <%= data.book.isbn %>)</div>
             </div>
           </div>
+
+          
         </div>
+        
       </div>
     </div>
     
@@ -120,16 +172,6 @@
 
 <!--
 <div class="book-content">
-  <div><%= data.book.five_star_ratings %></div>
-  <div><%= data.book.four_star_ratings %></div>
-  <div><%= data.book.three_star_ratings %></div>
-  <div><%= data.book.two_star_ratings %></div>
-  <div><%= data.book.one_star_ratings %></div>
-  
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
   <div><%= data.book.recommended_books %></div>
   <div><%= data.book.books_in_series %></div>
   <div><%= data.book.reviews %></div>
