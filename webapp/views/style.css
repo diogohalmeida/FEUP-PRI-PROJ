@@ -4,6 +4,15 @@
     --clr-accent-400: hsl(39, 69%, 35%);
 }
 
+html *{
+          font-family:  'Roboto', sans-serif;
+}
+
+.banner-image {
+    background-image: url('../assets/bg.jpg');
+    background-size: cover;
+}
+
 
 *, *::before, *::after{
     box-sizing: border-box;
@@ -89,7 +98,6 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 500ms ease;
-
 }
 
 
@@ -111,4 +119,96 @@
     background-color: var(--clr-neutral-100);
     color: black;
     background-color: #b48838;
+}
+
+
+.book-cover{
+    background-size: 280px 400px;
+    width: 280px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 0.3em;
+}
+
+
+.book-cover-bg, .book-links-bg{
+    background-color: rgba(41, 43, 44, 0.9);
+    border-radius: 0.3em;
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+}
+
+.book-links-bg{
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.3em;
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+}
+
+.book-info-bg{
+    background-color: rgba(41, 43, 44, 0.9);
+    border-radius: 0.3em;
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+    max-height: 90vh;
+}
+
+.book-info{
+    color: white;
+}
+
+
+#book-title{
+    font-family: 'Libre Baskerville', serif;
+    font-weight: bold;
+}
+
+#book-series{
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    color:lightgray;
+}
+
+#book-author{
+    text-decoration: none;
+    font-family: 'Libre Baskerville', serif;
+    color: white;
+}
+
+#book-average_rating{
+    font-family: 'Libre Baskerville', serif;
+}
+
+#book-rating_count{
+    color: lightgray;
+    font-size: smaller;
+}
+
+.book-genre{
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+.book-genre::after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: -1px;
+    background: var(--clr-accent-400);
+}
+
+a:hover{
+    color: var(--clr-accent-400)!important;
+    
+}
+
+.book-info-details, #book-awards{
+    font-size: small;
 }

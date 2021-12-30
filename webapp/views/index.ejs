@@ -1,12 +1,11 @@
 <%- include('partials/_header') %>
-
+<%- include('partials/_body') %>
     <% if (locals.data) { %>
         <h2 class="text-white mb-3" style="background: rgba(0, 0, 0, 0.7); border-radius: 4px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Search Results for: "<%= data.userQuery %>"</h2>
         <div class="container row">
         <% data.books.forEach(function(book) { %>
             <%- include('partials/_books', {book: book}); %>
         <% }) %>
+        </div>
     <% } %>
-
-
 <%- include('partials/_footer') %>
