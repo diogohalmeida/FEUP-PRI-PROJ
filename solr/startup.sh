@@ -1,5 +1,7 @@
 #!/bin/bash
 
+precreate-core reviews
+
 precreate-core books
 
 # Start Solr in background mode so we can use the API to upload the schema
@@ -11,15 +13,19 @@ cp /data/synonyms.txt /var/solr/data/books/conf
 
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
+    --data-binary @/data/reviews_schema.json \
+    http://localhost:8983/solr/reviews/schema
+
+curl -X POST -H 'Content-type:application/json' \
     --data-binary @/data/schema.json \
     http://localhost:8983/solr/books/schema
 	
 
 # Populate collection
-bin/post -c books /data/data.json
+bin/post -c reviews /data/goodreads_reviews_solr.csv
 
 # Populate collection
-#bin/post -c books /data/goodreads_reviews_solr.csv
+bin/post -c books /data/goodreads_books_solr.csv
 
 # Restart in foreground mode so we can access the interface
 solr restart -f

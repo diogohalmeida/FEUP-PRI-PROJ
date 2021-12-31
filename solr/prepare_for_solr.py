@@ -18,17 +18,19 @@ def replace_id_by_title(dictionary, ids_string):
 books = pandas.read_csv("../dataset/goodreads_books_clean.csv", low_memory=False)
 reviews = pandas.read_csv("../dataset/goodreads_reviews.csv")
 
-dictionary = dict(zip(books.id, books.title))
+#dictionary = dict(zip(books.id, books.title))
 
-books['recommended_books'] = books['recommended_books'].apply(lambda x: replace_id_by_title(dictionary, x))
-books['books_in_series'] = books['books_in_series'].apply(lambda x: replace_id_by_title(dictionary, x))
+# books['recommended_books'] = books['recommended_books'].apply(lambda x: replace_id_by_title(dictionary, x))
+# books['books_in_series'] = books['books_in_series'].apply(lambda x: replace_id_by_title(dictionary, x))
 
-reviews["Id"].replace(dictionary, inplace=True)
+# reviews["Id"].replace(dictionary, inplace=True)
 
-reviews.rename({'Id': 'book', ' Reviews': 'text', ' Users':'user', ' Dates':'date_published'}, axis=1, inplace=True)
+books['id'] = books['id'].astype('int64')
 
-reviews["type"] = "review"
-books["type"] = "book"
+reviews.rename({'Id': 'book_id', ' Reviews': 'text', ' Users':'user', ' Dates':'date_published'}, axis=1, inplace=True)
+
+# reviews["type"] = "review"
+# books["type"] = "book"
 
 reviews['user'].replace({"Vicky phenkos""":'Vicky phenkos'}, inplace=True)
 
