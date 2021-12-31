@@ -8,6 +8,13 @@ var client = new SolrNode({
     protocol: "http"
 })
 
+var reviewsClient = new SolrNode({
+    host: "127.0.0.1",
+    port: "8983",
+    core: "reviews",
+    protocol: "http"
+})
+
 
 const router = express.Router();
 
@@ -58,7 +65,6 @@ router.get("/book/:id", (req, res) => {
         const response = result.response
         recommended_books_q = response.docs[0]["recommended_books"].replaceAll(","," id:")
         recommended_books_q = "id:" + recommended_books_q
-        console.log(recommended_books_q)
         const searchQueryRB = client.query()
         .qop("OR")
         .q(recommended_books_q)
@@ -75,7 +81,6 @@ router.get("/book/:id", (req, res) => {
             const responseRB = resultRB.response
             books_in_series_q = response.docs[0]["books_in_series"].replaceAll(","," id:")
             books_in_series_q = "id:" + books_in_series_q
-            console.log(books_in_series_q)
             const searchQueryBIS = client.query()
             .qop("OR")
             .q(books_in_series_q)
@@ -83,20 +88,34 @@ router.get("/book/:id", (req, res) => {
                 wt:"json",
                 indent: true,
             })
-            
-            client.search(searchQueryBIS, function(err, resultBIS){
-                if (err) {
+
+            const reviewsQuery = reviewsClient.query().q('book_id:' + book_id)
+
+            reviewsClient.search(reviewsQuery, function(err, reviewsResult){
+                if (err){
                     console.log(err)
                     return
                 }
-                const responseBIS = resultBIS.response
-                res.render("book", {data: {
-                    book: response.docs[0],
-                    recommended_books: responseRB.docs,
-                    books_in_series: responseBIS.docs
+
+                const reviewsResponse = reviewsResult.response
+
+                client.search(searchQueryBIS, function(err, resultBIS){
+                    if (err) {
+                        console.log(err)
+                        return
                     }
+                    const responseBIS = resultBIS.response
+                    console.log(reviewsResponse.docs)
+                    res.render("book", {data: {
+                        book: response.docs[0],
+                        recommended_books: responseRB.docs,
+                        books_in_series: responseBIS.docs,
+                        reviews: reviewsResponse.docs
+                        }
+                    })
                 })
             })
+            
         })
 
         
