@@ -105,7 +105,6 @@ router.get("/book/:id", (req, res) => {
                         return
                     }
                     const responseBIS = resultBIS.response
-                    console.log(reviewsResponse.docs)
                     res.render("book", {data: {
                         book: response.docs[0],
                         recommended_books: responseRB.docs,
