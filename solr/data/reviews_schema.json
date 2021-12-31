@@ -1,0 +1,55 @@
+{
+    "add-field-type": [
+        {
+            "name":"standard_text",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"}
+                ]
+            }
+        }
+	],
+	
+	"add-field": [
+        {
+            "name": "book_id",
+            "type": "standard_text",
+            "indexed": true,
+			"stored": true
+        },
+		{
+            "name": "text",
+            "type": "standard_text",
+            "indexed": true,
+			"stored": true
+        },
+		{
+            "name": "user",
+            "type": "standard_text",
+            "indexed": true,
+			"stored": true
+        },
+		{
+            "name": "date_published",
+            "type": "standard_text",
+            "indexed": true,
+			"stored": true
+        }
+	]
+}
