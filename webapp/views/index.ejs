@@ -1,11 +1,19 @@
 <%- include('partials/_header') %>
-<%- include('partials/_body') %>
+<body>
+    <!-- Banner Image  -->
+    <div class="banner-image w-100 vh-100 d-flex flex-column pt-3 align-items-center overflow-hidden">
     <% if (locals.data) { %>
-        <h2 class="text-white mb-3" style="background: rgba(0, 0, 0, 0.7); border-radius: 4px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Search Results for: "<%= data.userQuery %>"</h2>
+        <h2 id= "search-result-text" class="text-white mb-3" style="background: rgba(0, 0, 0, 0.7); border-radius: 4px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Search Results for: "<%= data.userQuery %>"</h2>
         <div class="container row">
         <% data.books.forEach(function(book) { %>
             <%- include('partials/_books', {book: book}); %>
         <% }) %>
         </div>
+    <% }else{ %>
+        <div class="text-white mb-3 d-flex align-items-center flex-column" style="background: rgba(0, 0, 0, 0.7); border-radius: 4px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+            <h2 id= "search-result-text" >Welcome to Goodreads Book Search!</h2>
+            <h5 id = "search-result-text" style= "font-weight:normal">Start by typing something on the search bar</h3>
+        </div>
+        
     <% } %>
 <%- include('partials/_footer') %>

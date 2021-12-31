@@ -1,5 +1,7 @@
 <%- include('partials/_header') %>
-<%- include('partials/_body_book') %>
+<body>
+  <!-- Banner Image  -->
+  <div class="banner-image w-100 vh-100 pt-3 align-items-center overflow-hidden">
 
 <% 
     //Handle book optinal fields
@@ -190,6 +192,17 @@
               </div>
             <% }) %>
           </div>
+          <div class="mb-5"></div>
+          <h3 class= "review-title mb-3">Reviews</h3>
+          <% data.reviews.forEach(function(review) { %>
+            <div class="review-container mb-4">
+              <div class="review-header d-flex justify-content-between mb-2">
+                <div id="review-user"><%=review.user%></div>
+                <div id="review-date"><%=review.date_published%></div>
+              </div>
+              <div id="review-content" class="overflow-auto"><%=review.text%></div>
+            </div>
+          <%}) %>
         </div>
         
       </div>
