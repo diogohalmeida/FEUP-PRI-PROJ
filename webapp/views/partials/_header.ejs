@@ -24,35 +24,35 @@
         <form class="search-form d-flex col-8 row" action="/search" method = "GET">
           <div class="col row p-0">
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="title" value="5" checked>
+              <input class="form-check-input" type="checkbox" name="title" value="5" <%if(oldRequest.includes("title")){%> checked<%}%>>
               <label class="form-check-label" for="title">Title</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="genre_and_votes" value="3">
+              <input class="form-check-input" type="checkbox" name="genre_and_votes" value="3" <%if(oldRequest.includes("genre_and_votes")){%> checked<%}%>>
               <label class="form-check-label" for="genre">Genre</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="settings" value="2">
+              <input class="form-check-input" type="checkbox" name="settings" value="2" <%if(oldRequest.includes("settings")){%> checked<%}%>>
               <label class="form-check-label" for="reviews">Settings</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="author" value="2">
+              <input class="form-check-input" type="checkbox" name="author" value="2" <%if(oldRequest.includes("author")){%> checked<%}%>>
               <label class="form-check-label" for="author">Author</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="series" value="2">
+              <input class="form-check-input" type="checkbox" name="series" value="2" <%if(oldRequest.includes("series")){%> checked<%}%>>
               <label class="form-check-label" for="reviews">Series</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="characters" value="2">
+              <input class="form-check-input" type="checkbox" name="characters" value="2" <%if(oldRequest.includes("characters")){%> checked<%}%>>
               <label class="form-check-label" for="characters">Characters</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="description" value="2">
+              <input class="form-check-input" type="checkbox" name="description" value="2" <%if(oldRequest.includes("description")){%> checked<%}%>>
               <label class="form-check-label" for="description">Description</label>
             </div>
             <div class="col-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="reviews" value="2">
+              <input class="form-check-input" type="checkbox" name="reviews" value="2" <%if(oldRequest.includes("reviews")){%> checked<%}%>>
               <label class="form-check-label" for="reviews">Reviews</label>
             </div>
           </div>

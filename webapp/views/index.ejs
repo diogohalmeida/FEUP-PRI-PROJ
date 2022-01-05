@@ -1,4 +1,9 @@
-<%- include('partials/_header') %>
+<%if(locals.data == undefined){ %> 
+<%- include('partials/_header', {oldRequest: ["title"]}) %>
+<%}else{%> 
+<%-include('partials/_header', {oldRequest: locals.data.oldRequest})%> 
+<%}%> 
+
 <body>
     <!-- Banner Image  -->
     <div class="banner-image w-100 vh-100 d-flex flex-column pt-3 align-items-center overflow-hidden">

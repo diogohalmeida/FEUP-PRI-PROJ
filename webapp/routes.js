@@ -19,19 +19,19 @@ var reviewsClient = new SolrNode({
 const router = express.Router();
 
 router.get("/", function(req, res) {
-    res.render("index");
+    res.render("index")
 })
-
-router.post
 
 router.get("/search", (req,res) => {
     const search = req.query["query"];
     let queryFields = []
+    let requestVariables = []
 
     for (field in req.query){
         if(field == "query")
             continue
         queryFields.push(field + "%5E" + req.query[field])
+        requestVariables.push(field)
     }
 
     const searchQuery = client.query()
@@ -52,7 +52,8 @@ router.get("/search", (req,res) => {
 
         res.render("index", {data: {
             userQuery: search,
-            books: response.docs
+            books: response.docs,
+            oldRequest: requestVariables
             }
         })
     })
