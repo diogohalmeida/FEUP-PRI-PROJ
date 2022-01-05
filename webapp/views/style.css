@@ -287,3 +287,22 @@ a:hover{
 label{
     color:lightgray;
 }
+
+.form-check-input:checked{
+    background-color: var(--clr-accent-400) !important;
+    border-color: var(--clr-accent-400) !important;
+}
+
+.form-check-label{
+    font-size: smaller;
+}
+
+.form-check-input:focus{
+    border-color: var(--clr-accent-400) !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.25rem rgb(180 136 56 / 25%) !important;
+}
+
+.form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23e1cfaf'/%3e%3c/svg%3e")!important;
+}
