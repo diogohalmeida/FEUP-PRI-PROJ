@@ -5,19 +5,19 @@
 
 <% 
     //Handle book optinal fields
-    if (data.book.series == 'NaN'){
+    if (data.book.series == undefined){
       series = '';
     }
     else{ 
       series = data.book.series.replace('(', '').replace(')', '')
     } 
-    if (data.book.characters == 'NaN'){
+    if (data.book.characters == undefined){
       characters = '';
     }
     else{ 
       characters = data.book.characters.replace('(', '').replace(')', '')
     } 
-    if (data.book.settings == 'NaN'){
+    if (data.book.settings == undefined){
       settings = '';
     }
     else{ 
@@ -59,7 +59,7 @@
         <h5 class = "mb-1" id="book-series"><%=series%></h5>
         <h1 class = "mb-1" id= "book-title" ><%= data.book.title%></h1>
         <div class="author-details d-flex">
-          <a id="book-author" href = "../search?query=<%= data.book.author %>"><%= data.book.author %></a> 
+          <a id="book-author" href = "../search?author=1&query=<%= data.book.author %>"><%= data.book.author %></a> 
           <a class = "ms-2" href="<%= data.book.author_link %>"><img src = "../assets/logo_tiny.svg" alt="" height = "20px"></a>
         </div>
         <div class="mb-4"></div>
@@ -114,7 +114,7 @@
         <div class="mb-4"></div>
         <div class = "book-genres d-flex">
           <% genres.forEach(function(genre) { %>
-            <a href = "../search?query=<%=genre%>" class = "book-genre me-3"><%=genre%></a>
+            <a href = "../search?query=<%=genre%>&genre_and_votes=1" class = "book-genre me-3"><%=genre%></a>
           <% }) %>
         </div> 
         

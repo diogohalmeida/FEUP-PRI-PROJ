@@ -31,7 +31,7 @@ router.get("/search", (req,res) => {
 
     for (field in req.query){
         if(field == "query")
-            break
+            continue
         queryFields.push(field + "%5E" + req.query[field])
     }
 
@@ -72,7 +72,6 @@ router.get("/book/:id", (req, res) => {
             return
         }
         const response = result.response
-        console.log(response.docs)
         recommended_books_q = response.docs[0]["recommended_books"].replaceAll(","," id:")
         recommended_books_q = "id:" + recommended_books_q
         const searchQueryRB = client.query()
