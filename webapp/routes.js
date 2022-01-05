@@ -23,8 +23,17 @@ router.get("/", function(req, res) {
     res.render("index");
 })
 
+router.post
+
 router.get("/search", (req,res) => {
     const search = req.query["query"];
+    let queryFields = []
+
+    for (field in req.query){
+        if(field == "query")
+            continue
+        queryFields.push(field + "%5E" + req.query[field])
+    }
 
     const searchQuery = client.query()
     .qop("OR")
@@ -33,7 +42,7 @@ router.get("/search", (req,res) => {
         wt:"json",
         indent: true,
     }).edismax()
-    .mltQuery("qf=" + ["title%5E5","author%5E3","series%5E3","description%5E1"].join("%20"))
+    .mltQuery("qf=" + queryFields.join("%20"))
 
     client.search(searchQuery, function(err, result){
         if (err) {
