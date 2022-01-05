@@ -22,6 +22,18 @@
           <p class="col my-auto" style="color:grey">Book Search</p>
         </div>
         <form class="search-form d-flex col-4" action="/search" method = "GET">
+          <input type="checkbox" name="title" value="5">
+          <label for="title">Title</label>
+          <input type="checkbox" name="genre_and_votes" value="3">
+          <label for="genre">Genre</label>
+          <input type="checkbox" name="description" value="2">
+          <label for="description">Description</label>
+          <input type="checkbox" name="author" value="2">
+          <label for="author">Author</label>
+          <input type="checkbox" name="characters" value="2">
+          <label for="characters">Characters</label>
+          <input type="checkbox" name="reviews" value="2">
+          <label for="reviews">Reviews</label>
           <input class="form-control" style="border-top-right-radius:0; border-bottom-right-radius: 0; border-color: grey" type="search" placeholder="Search for a Book" name="query" aria-label="Search">
           <button class="search-button btn" type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
