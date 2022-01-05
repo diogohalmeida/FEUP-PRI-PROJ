@@ -282,3 +282,8 @@ a:hover{
     bottom: -0.8rem;
     background: grey;
 }
+
+
+label{
+    color:lightgray;
+}
