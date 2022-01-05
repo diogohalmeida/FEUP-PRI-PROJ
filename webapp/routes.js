@@ -19,7 +19,6 @@ var reviewsClient = new SolrNode({
 const router = express.Router();
 
 router.get("/", function(req, res) {
-    console.log("Basic web page")
     res.render("index");
 })
 
@@ -60,6 +59,90 @@ router.get("/search", (req,res) => {
 
 })
 
+function get_recommend_books(book, reviews, res){
+    if(book["recommended_books"] != undefined){
+        recommended_books_q = book["recommended_books"].replaceAll(","," id:")
+        recommended_books_q = "id:" + recommended_books_q
+        const searchQuery = client.query()
+        .qop("OR")
+        .q(recommended_books_q)
+        .addParams({
+            wt:"json",
+            indent: true,
+        })
+
+        client.search(searchQuery, function(err, result){
+            if (err) {
+                console.log(err)
+                return
+            }
+            const response = result.response
+
+            get_books_in_series(book, reviews, response.docs, res)
+        })
+    }
+    else{
+        get_books_in_series(book, reviews, [], res)
+    }
+}
+
+function get_books_in_series(book, reviews, recommended_books, res){
+    if(book["books_in_series"] != undefined){
+        let books_in_series_q = book["books_in_series"].replaceAll(","," id:")
+        books_in_series_q = "id:" + books_in_series_q
+
+        const searchQuery = client.query()
+        .qop("OR")
+        .q(books_in_series_q)
+        .addParams({
+            wt:"json",
+            indent: true,
+        })
+
+        client.search(searchQuery, function(err, result){
+            if (err) {
+                console.log(err)
+                return
+            }
+            const response = result.response
+
+            res.render("book", {data: {
+                book: book,
+                recommended_books: recommended_books,
+                books_in_series: response.docs,
+                reviews: reviews
+                }
+            })
+        })
+    
+    }
+    else{
+        res.render("book", {data: {
+            book: book,
+            recommended_books: recommended_books,
+            books_in_series: [],
+            reviews: reviews
+            }
+        })
+    }
+}
+
+function get_reviews(book, res){
+    const searchQuery = reviewsClient.query().q('book_id:' + book["id"])
+
+    reviewsClient.search(searchQuery, function(err, result){
+        if (err){
+            console.log(err)
+            return
+        }
+
+        const response = result.response
+
+        get_recommend_books(book, response.docs, res)
+
+    })
+}
+
 router.get("/book/:id", (req, res) => {
 
     const book_id = req.params.id
@@ -71,62 +154,12 @@ router.get("/book/:id", (req, res) => {
             console.log(err)
             return
         }
+
+
         const response = result.response
-        recommended_books_q = response.docs[0]["recommended_books"].replaceAll(","," id:")
-        recommended_books_q = "id:" + recommended_books_q
-        const searchQueryRB = client.query()
-        .qop("OR")
-        .q(recommended_books_q)
-        .addParams({
-            wt:"json",
-            indent: true,
-        })
 
-        client.search(searchQueryRB, function(err, resultRB){
-            if (err) {
-                console.log(err)
-                return
-            }
-            const responseRB = resultRB.response
-            books_in_series_q = response.docs[0]["books_in_series"].replaceAll(","," id:")
-            books_in_series_q = "id:" + books_in_series_q
-            const searchQueryBIS = client.query()
-            .qop("OR")
-            .q(books_in_series_q)
-            .addParams({
-                wt:"json",
-                indent: true,
-            })
-
-            const reviewsQuery = reviewsClient.query().q('book_id:' + book_id)
-
-            reviewsClient.search(reviewsQuery, function(err, reviewsResult){
-                if (err){
-                    console.log(err)
-                    return
-                }
-
-                const reviewsResponse = reviewsResult.response
-
-                client.search(searchQueryBIS, function(err, resultBIS){
-                    if (err) {
-                        console.log(err)
-                        return
-                    }
-                    const responseBIS = resultBIS.response
-                    res.render("book", {data: {
-                        book: response.docs[0],
-                        recommended_books: responseRB.docs,
-                        books_in_series: responseBIS.docs,
-                        reviews: reviewsResponse.docs
-                        }
-                    })
-                })
-            })
-            
-        })
-
-        
+        get_reviews(response.docs[0], res)
+               
     })
     
 })

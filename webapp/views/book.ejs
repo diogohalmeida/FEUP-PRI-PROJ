@@ -166,7 +166,7 @@
             <div class="books_in_series-display d-flex overflow-auto">
               <% data.books_in_series.forEach(function(book_in_series) { %>
                 <div class="container mb-4 mt-3 d-flex justify-content-center ">
-                  <div class= "book overflow" style="background-image: url(<%= book_in_series.cover_link %>);">
+                  <div class= "book" style="background-image: url(<%= book_in_series.cover_link %>);">
                       <div class="book-content">
                           <h2 class = "book-title "><%= book_in_series.title %></h2>
                           <p class = "book-body"><%= book_in_series.author %></p>
@@ -177,21 +177,23 @@
               <% }) %>
             </div>  
           <%}%>
-          <div class="mb-4"></div>
-          <h5 class= "edition-details">Readers also enjoyed</h5>
-          <div class="recommended_books-display d-flex overflow-auto">
-            <% data.recommended_books.forEach(function(recommended_book) { %>
-              <div class="container mb-4 mt-3 d-flex justify-content-center">
-                <div class= "book" style="background-image: url(<%= recommended_book.cover_link %>);">
-                    <div class="book-content">
-                        <h2 class = "book-title "><%= recommended_book.title %></h2>
-                        <p class = "book-body"><%= recommended_book.author %></p>
-                        <a href="/book/<%= recommended_book.id%>" class="button">Learn More</a>
-                    </div>
+          <%if (data.recommended_books.length > 0){%>
+            <div class="mb-4"></div>
+            <h5 class= "edition-details">Readers also enjoyed</h5>
+            <div class="recommended_books-display d-flex overflow-auto">
+              <% data.recommended_books.forEach(function(recommended_book) { %>
+                <div class="container mb-4 mt-3 d-flex justify-content-center">
+                  <div class= "book" style="background-image: url(<%= recommended_book.cover_link %>);">
+                      <div class="book-content">
+                          <h2 class = "book-title "><%= recommended_book.title %></h2>
+                          <p class = "book-body"><%= recommended_book.author %></p>
+                          <a href="/book/<%= recommended_book.id%>" class="button">Learn More</a>
+                      </div>
+                  </div>
                 </div>
-              </div>
-            <% }) %>
-          </div>
+              <% }) %>
+            </div>
+          <%}%>
           <div class="mb-5"></div>
           <h3 class= "review-title mb-3">Reviews</h3>
           <% data.reviews.forEach(function(review) { %>

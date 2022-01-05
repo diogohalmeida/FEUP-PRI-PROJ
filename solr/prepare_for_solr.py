@@ -17,6 +17,7 @@ def replace_id_by_title(dictionary, ids_string):
 
 books = pandas.read_csv("../dataset/goodreads_books_clean.csv", low_memory=False)
 reviews = pandas.read_csv("../dataset/goodreads_reviews.csv")
+books.fillna("Nan", inplace=True)
 
 #dictionary = dict(zip(books.id, books.title))
 
