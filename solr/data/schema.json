@@ -5,7 +5,7 @@
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
-                    "class":"solr.StandardTokenizerFactory"
+                    "class":"solr.OpenNLPTokenizerFactory", "sentenceModel": "en-sent.bin", "tokenizerModel": "en-token.bin"
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
@@ -27,31 +27,13 @@
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
             }
-        },
-        {
-            "name":"nlp_text",
-            "class":"solr.TextField",
-            "analyzer":{
-                "tokenizer":{
-                    "class":"solr.OpenNLPTokenizerFactory",
-                    "sentenceModel": "en-sent.bin",
-                    "tokenizerModel": "en-token.bin"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
-                    {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.EnglishMinimalStemFilterFactory"}
-                ]
-            }
         }
     ],
 
     "add-field": [
         {
             "name": "title",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -63,7 +45,7 @@
         },
         {
             "name": "series",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -75,7 +57,7 @@
         },
         {
             "name": "author",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -135,25 +117,25 @@
         },
         {
             "name": "date_published",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "publisher",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "original_title",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "genre_and_votes",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -171,19 +153,19 @@
         },
         {
             "name": "settings",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "characters",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "awards",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -201,19 +183,19 @@
         },
         {
             "name": "recommended_books",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "books_in_series",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
         {
             "name": "description",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         }
