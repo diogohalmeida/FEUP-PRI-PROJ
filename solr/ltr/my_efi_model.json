@@ -1,0 +1,16 @@
+{
+    "store" : "my_efi_feature_store",
+    "name" : "my_efi_model",
+    "class" : "org.apache.solr.ltr.model.LinearModel",
+    "features" : [
+    { "name" : "original_score" },
+    { "name" : "maximize_rating" }
+
+    ],
+    "params" : {
+      "weights" : {
+        "original_score" : 10.0,
+        "maximize_rating": 1.0
+      }
+    }
+  }

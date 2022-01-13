@@ -1,0 +1,14 @@
+[
+    {
+        "store" : "my_efi_feature_store",
+        "name" : "maximize_rating",
+        "class" : "org.apache.solr.ltr.feature.SolrFeature",
+        "params" : { "q" : "{!func}scale(rating_count, 0, 1)" }
+    },
+    {
+        "store" : "my_efi_feature_store",
+        "name" : "original_score",
+        "class" : "org.apache.solr.ltr.feature.OriginalScoreFeature",
+        "params" : {}
+    }
+]

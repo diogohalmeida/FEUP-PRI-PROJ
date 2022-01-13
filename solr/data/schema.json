@@ -1,9 +1,9 @@
 {
     "add-field-type": [
         {
-            "name":"standard_text",
+            "name":"nlp_text",
             "class":"solr.TextField",
-            "indexAnalyzer":{
+            "analyzer":{
                 "tokenizer":{
                     "class":"solr.OpenNLPTokenizerFactory", "sentenceModel": "en-sent.bin", "tokenizerModel": "en-token.bin"
                 },
@@ -18,7 +18,23 @@
                     },
                     {
                         "class": "solr.TypeAsPayloadFilterFactory"
-                    }
+                    },
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"standard_text",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
 					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
