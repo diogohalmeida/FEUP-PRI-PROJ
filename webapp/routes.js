@@ -28,10 +28,16 @@ router.get("/search", (req,res) => {
     let requestVariables = []
 
     for (field in req.query){
-        if(field == "query")
+        if(field == "query" || field == "query_reviews")
             continue
         queryFields.push(field + "%5E" + req.query[field])
         requestVariables.push(field)
+    }
+
+    final_query = "qf=" + queryFields.join("%20")
+
+    if("query_reviews" in req.query && req.query["query_reviews"] != ""){
+        final_query += "&fq=%7B!join%20from%3Dbook_id%20fromIndex%3Dreviews%20%20to%3Did%7Dtext:" + req.query["query_reviews"]
     }
 
     const searchQuery = client.query()
@@ -41,7 +47,7 @@ router.get("/search", (req,res) => {
         wt:"json",
         indent: true,
     }).edismax()
-    .mltQuery("qf=" + queryFields.join("%20"))
+    .mltQuery(final_query)
 
     client.search(searchQuery, function(err, result){
         if (err) {
