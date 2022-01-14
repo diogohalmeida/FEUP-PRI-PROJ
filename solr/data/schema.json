@@ -225,6 +225,13 @@
             "type": "standard_text",
             "indexed": true,
 			"stored": true
+        },
+        {
+            "name": "times_recommended",
+            "type": "pint",
+            "indexed": true,
+			"stored": true
+
         }
     ]
 }

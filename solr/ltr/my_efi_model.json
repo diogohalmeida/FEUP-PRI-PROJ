@@ -4,13 +4,15 @@
     "class" : "org.apache.solr.ltr.model.LinearModel",
     "features" : [
     { "name" : "original_score" },
-    { "name" : "maximize_rating" }
+    { "name" : "maximize_rating" },
+    { "name" : "maximize_recommendation_number" }
 
     ],
     "params" : {
       "weights" : {
-        "original_score" : 10.0,
-        "maximize_rating": 1.0
+        "original_score" : 1.0,
+        "maximize_rating": 0.0,
+        "maximize_recommendation_number": 0.0
       }
     }
   }

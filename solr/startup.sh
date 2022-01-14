@@ -48,7 +48,7 @@ curl -XPUT -H 'Content-type:application/json' \
 bin/post -c reviews /data/goodreads_reviews_solr.csv
 
 # Populate collection
-bin/post -c books /data/goodreads_books_solr.csv
+bin/post -c books /data/goodreads_books_clean_ranked.csv
 
 # Restart in foreground mode so we can access the interface
 solr restart -f
