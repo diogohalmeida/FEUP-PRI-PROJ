@@ -23,7 +23,10 @@ router.get("/", function(req, res) {
 })
 
 router.get("/search", (req,res) => {
-    const search = req.query["query"];
+    if (req.query["query"] == "")
+        search = "*";
+    else
+        search = req.query["query"];
     let queryFields = []
     let requestVariables = []
 
