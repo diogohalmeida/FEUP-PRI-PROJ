@@ -13,6 +13,8 @@ cp /data/synonyms.txt /var/solr/data/books/conf
 
 cp /models/en-ner-person.bin /var/solr/data/books/conf/en-ner-person.bin
 
+cp /models/en-ner-location.bin /var/solr/data/books/conf/en-ner-location.bin
+
 cp /models/en-sent.bin /var/solr/data/books/conf/en-sent.bin
 
 cp /models/en-token.bin /var/solr/data/books/conf/en-token.bin

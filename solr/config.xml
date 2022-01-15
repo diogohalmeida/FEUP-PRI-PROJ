@@ -16,3 +16,21 @@
 <transformer name="features" class="org.apache.solr.ltr.response.transform.LTRFeatureLoggerTransformerFactory">
     <str name="fvCacheName">QUERY_DOC_FV</str>
 </transformer>
+
+<updateRequestProcessorChain name="add-unknown-fields-to-the-schema" default="${update.autoCreateFields:true}" processor="uuid,remove-blank,field-name-mutating,parse-boolean,parse-long,parse-double,parse-date,add-schema-fields">
+    <processor class="solr.LogUpdateProcessorFactory"/>
+    <processor class="solr.DistributedUpdateProcessorFactory"/>
+    <processor class="solr.OpenNLPExtractNamedEntitiesUpdateProcessorFactory">
+      <str name="modelFile">conf/en-ner-person.bin</str>
+      <str name="analyzerFieldType">nlp_text</str>
+      <str name="source">description</str>
+      <str name="dest">ner_person_field</str>
+   </processor>
+   <processor class="solr.OpenNLPExtractNamedEntitiesUpdateProcessorFactory">
+      <str name="modelFile">conf/en-ner-location.bin</str>
+      <str name="analyzerFieldType">nlp_text</str>
+      <str name="source">description</str>
+      <str name="dest">ner_location_field</str>
+   </processor>
+   <processor class="solr.RunUpdateProcessorFactory"/>
+</updateRequestProcessorChain>

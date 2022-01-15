@@ -18,12 +18,7 @@
                     },
                     {
                         "class": "solr.TypeAsPayloadFilterFactory"
-                    },
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
-                    {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.EnglishMinimalStemFilterFactory"}
+                    }
                 ]
             }
         },
@@ -60,7 +55,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "standard_text",
+            "type": "nlp_text",
             "indexed": true,
 			"stored": true
         },
@@ -156,7 +151,7 @@
         },
         {
             "name": "original_title",
-            "type": "standard_text",
+            "type": "nlp_text",
             "indexed": true,
 			"stored": true
         },
@@ -222,7 +217,7 @@
         },
         {
             "name": "description",
-            "type": "standard_text",
+            "type": "nlp_text",
             "indexed": true,
 			"stored": true
         },
@@ -232,6 +227,18 @@
             "indexed": true,
 			"stored": true
 
+        },
+        {
+            "name": "ner_person_field",
+            "type": "standard_text",
+            "indexed": true,
+			"multiValued": true
+        },
+        {
+            "name": "ner_location_field",
+            "type": "standard_text",
+            "indexed": true,
+			"multiValued": true
         }
     ]
 }
