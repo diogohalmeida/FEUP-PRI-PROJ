@@ -3,13 +3,13 @@
         "store" : "my_efi_feature_store",
         "name" : "maximize_rating",
         "class" : "org.apache.solr.ltr.feature.SolrFeature",
-        "params" : { "q" : "{!func}scale(rating_count, 0, 1)" }
+        "params" : { "q" : "{!func}scale(rating_count, 0, 10)" }
     },
     {
         "store" : "my_efi_feature_store",
         "name" : "maximize_recommendation_number",
         "class" : "org.apache.solr.ltr.feature.SolrFeature",
-        "params" : { "q" : "{!func}scale(times_recommended, 0, 1)" }
+        "params" : { "q" : "{!func}scale(times_recommended, 0, 10)" }
     },
     {
         "store" : "my_efi_feature_store",

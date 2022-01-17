@@ -9,7 +9,7 @@ sed -i $'/<\/config>/{e cat config.xml\n}' /var/solr/data/books/conf/solrconfig.
 
 solr start -Dsolr.ltr.enabled=true
 
-cp /data/synonyms.txt /var/solr/data/books/conf
+cp /data/synonyms_books.txt /var/solr/data/books/conf
 
 cp /models/en-ner-person.bin /var/solr/data/books/conf/en-ner-person.bin
 

@@ -10,9 +10,9 @@
     ],
     "params" : {
       "weights" : {
-        "original_score" : 1.0,
-        "maximize_rating": 0.0,
-        "maximize_recommendation_number": 0.0
+        "original_score" : 2.0,
+        "maximize_rating": 1.0,
+        "maximize_recommendation_number": 1.0
       }
     }
   }

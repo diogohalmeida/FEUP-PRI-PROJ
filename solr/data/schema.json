@@ -32,7 +32,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms_books.txt", "ignoreCase":"true"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
@@ -44,7 +44,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt", "tokenizerFactory":"solr.StandardTokenizerFactory"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms_books.txt", "ignoreCase":"true"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
@@ -55,7 +55,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -151,7 +151,7 @@
         },
         {
             "name": "original_title",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
@@ -217,7 +217,7 @@
         },
         {
             "name": "description",
-            "type": "nlp_text",
+            "type": "standard_text",
             "indexed": true,
 			"stored": true
         },
