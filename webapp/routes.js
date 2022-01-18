@@ -31,7 +31,7 @@ router.get("/search", (req,res) => {
     let requestVariables = []
 
     for (field in req.query){
-        if(field == "query" || field == "query_reviews")
+        if(field == "query" || field == "query_reviews" || field == "reviewAuthor")
             continue
         queryFields.push(field + "%5E" + req.query[field])
         requestVariables.push(field)
@@ -39,8 +39,13 @@ router.get("/search", (req,res) => {
 
     final_query = "qf=" + queryFields.join("%20")
 
-    if("query_reviews" in req.query && req.query["query_reviews"] != ""){
-        final_query += "&fq=%7B!join%20from%3Dbook_id%20fromIndex%3Dreviews%20%20to%3Did%7Dtext:" + req.query["query_reviews"]
+    if("query_reviews" in req.query && req.query["query_reviews"] != "" && !("reviewAuthor" in req.query)){
+        final_query += "&fq=%7B!join%20from%3Dbook_id%20fromIndex%3Dreviews%20%20to%3Did%7Dtext:" + req.query["query_reviews"].replace(/\s/g,"%20")
+    }
+
+    if("reviewAuthor" in req.query && req.query["reviewAuthor"] != ""){
+        final_query += "&fq=%7B!join%20from%3Dbook_id%20fromIndex%3Dreviews%20%20to%3Did%7Duser:" + req.query["query_reviews"].replace(/\s/g,"%20")
+        requestVariables.push("reviewAuthor")
     }
 
     const searchQuery = client.query()
