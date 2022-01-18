@@ -18,7 +18,21 @@
                     },
                     {
                         "class": "solr.TypeAsPayloadFilterFactory"
-                    }
+                    },
+					{	"class":"solr.ASCIIFoldingFilterFactory",
+						"preserveOriginal":true
+					},
+                    {	"class":"solr.LowerCaseFilterFactory"},
+					{	"class":"solr.SynonymGraphFilterFactory",
+						"synonyms":"synonyms_books.txt",
+						"ignoreCase":"true"
+					},
+                    {	
+						"class":"solr.EnglishPossessiveFilterFactory"
+					},
+                    {	
+						"class":"solr.EnglishMinimalStemFilterFactory"
+					}
                 ]
             }
         },
@@ -55,7 +69,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "standard_text",
+            "type": "nlp_text",
             "indexed": true,
 			"stored": true
         },
@@ -217,7 +231,7 @@
         },
         {
             "name": "description",
-            "type": "standard_text",
+            "type": "nlp_text",
             "indexed": true,
 			"stored": true
         },
@@ -239,6 +253,20 @@
             "type": "standard_text",
             "indexed": true,
 			"multiValued": true
-        }
+        },
+		        {
+            "name": "ner_date_field",
+            "type": "standard_text",
+            "indexed": true,
+			"multiValued": true
+        },
+		{
+			"name": "reviews",
+			"type": "nlp_text",
+			"indexed": true,
+			"stored": true,
+			"multiValued": true,
+		}
+		
     ]
 }

@@ -1,3 +1,4 @@
+spider-man => spider man, spiderman, homem-aranha, homem-aranha
 school => civilise, civilize, schooltime, schooling, cultivate, schoolhouse, shoal, school_day, educate, train
 experience => know, receive, see, go_through, get, live, feel, have
 classes => class, separate, stratum, sort, course_of_study, social_class, year, form, grade, course, classify, family, socio-economic_class, division, assort, category, course_of_instruction, sort_out

@@ -5,6 +5,7 @@
     "features" : [
     { "name" : "original_score" },
     { "name" : "maximize_rating" },
+	{ "name" : "maximize_average_rating" },
     { "name" : "maximize_recommendation_number" }
 
     ],
@@ -12,6 +13,7 @@
       "weights" : {
         "original_score" : 2.0,
         "maximize_rating": 1.0,
+		"maximize_average_rating": 1.0,
         "maximize_recommendation_number": 1.0
       }
     }

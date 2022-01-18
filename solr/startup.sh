@@ -15,6 +15,8 @@ cp /models/en-ner-person.bin /var/solr/data/books/conf/en-ner-person.bin
 
 cp /models/en-ner-location.bin /var/solr/data/books/conf/en-ner-location.bin
 
+cp /models/en-ner-date.bin /var/solr/data/books/conf/en-ner-date.bin
+
 cp /models/en-sent.bin /var/solr/data/books/conf/en-sent.bin
 
 cp /models/en-token.bin /var/solr/data/books/conf/en-token.bin
@@ -23,7 +25,7 @@ cp /models/en-chunker.bin /var/solr/data/books/conf/en-chunker.bin
 
 cp /models/en-pos-maxent.bin /var/solr/data/books/conf/en-pos-maxent.bin
 
-sleep 15
+sleep 30
 
 # Schema definition via API
 #curl -X POST -H 'Content-type:application/json' \
@@ -50,7 +52,7 @@ curl -XPUT -H 'Content-type:application/json' \
 bin/post -c reviews /data/goodreads_reviews_solr.csv
 
 # Populate collection
-bin/post -c books /data/goodreads_books_clean_ranked.csv
+bin/post -c books /data/data.json
 
 # Restart in foreground mode so we can access the interface
 solr restart -f
