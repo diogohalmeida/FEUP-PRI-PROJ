@@ -1,6 +1,6 @@
 #!/bin/bash
 
-precreate-core reviews
+#precreate-core reviews
 
 precreate-core books
 
@@ -9,7 +9,7 @@ sed -i $'/<\/config>/{e cat config.xml\n}' /var/solr/data/books/conf/solrconfig.
 
 solr start -Dsolr.ltr.enabled=true
 
-cp /data/synonyms_books.txt /var/solr/data/books/conf
+cp /data/synonyms.txt /var/solr/data/books/conf
 
 cp /models/en-ner-person.bin /var/solr/data/books/conf/en-ner-person.bin
 
@@ -32,7 +32,7 @@ sleep 30
 #    --data-binary @/data/config.json \
 #    http://localhost:8983/solr/books/config
 
-curl -X POST -H 'Content-type:application/json' \
+# curl -X POST -H 'Content-type:application/json' \
     --data-binary @/data/reviews_schema.json \
     http://localhost:8983/solr/reviews/schema
 

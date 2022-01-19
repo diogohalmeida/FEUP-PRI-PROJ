@@ -24,7 +24,7 @@
 					},
                     {	"class":"solr.LowerCaseFilterFactory"},
 					{	"class":"solr.SynonymGraphFilterFactory",
-						"synonyms":"synonyms_books.txt",
+						"synonyms":"synonyms.txt",
 						"ignoreCase":"true"
 					},
                     {	
@@ -33,6 +33,28 @@
                     {	
 						"class":"solr.EnglishMinimalStemFilterFactory"
 					}
+                ]
+            }
+        },
+        {
+            "name":"ner_text",
+            "class":"solr.TextField",
+            "analyzer":{
+                "tokenizer":{
+                    "class":"solr.OpenNLPTokenizerFactory", "sentenceModel": "en-sent.bin", "tokenizerModel": "en-token.bin"
+                },
+                "filters":[
+                    {
+                        "class": "solr.OpenNLPPOSFilterFactory",
+                        "posTaggerModel": "en-pos-maxent.bin"
+                    },
+                    {
+                        "class": "solr.OpenNLPChunkerFilterFactory",
+                        "chunkerModel": "en-chunker.bin"
+                    },
+                    {
+                        "class": "solr.TypeAsPayloadFilterFactory"
+                    }
                 ]
             }
         },
@@ -46,7 +68,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms_books.txt", "ignoreCase":"true"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
@@ -58,7 +80,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms_books.txt", "ignoreCase":"true"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
@@ -265,7 +287,7 @@
 			"type": "nlp_text",
 			"indexed": true,
 			"stored": true,
-			"multiValued": true,
+			"multiValued": true
 		}
 		
     ]
