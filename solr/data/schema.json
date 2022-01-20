@@ -20,12 +20,13 @@
                         "class": "solr.TypeAsPayloadFilterFactory"
                     },
 					{	"class":"solr.ASCIIFoldingFilterFactory",
-						"preserveOriginal":true
+						"preserveOriginal":"true"
 					},
                     {	"class":"solr.LowerCaseFilterFactory"},
 					{	"class":"solr.SynonymGraphFilterFactory",
 						"synonyms":"synonyms.txt",
-						"ignoreCase":"true"
+						"ignoreCase":"true",
+						"expand":"false"
 					},
                     {	
 						"class":"solr.EnglishPossessiveFilterFactory"
@@ -68,7 +69,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true", "expand":"false"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]
@@ -80,7 +81,7 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true"},
+					{"class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt", "ignoreCase":"true", "expand":"false"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"}
                 ]

@@ -18,11 +18,10 @@ qrels_prefix = "../queries/query"
 qrels_sufix = ".txt"
 
 queries_urls = [
-    "http://localhost:8983/solr/movies/select?bq=genres%3A%22Science%20Fiction%20%26%20Fantasy%22%5E3&defType=dismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&fq=available_netflix%3A%20%22True%22&indent=true&q.op=OR&q=space%20sci-fi&qf=genres%20original_title%5E1%20movie_info%5E5%20review_content%5E2&rows=50&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22space%20sci-fi%22%20reRankDocs%3D50%7D",
-    "http://localhost:8983/solr/movies/select?defType=dismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&indent=true&q.op=OR&q=slavery%20slave&qf=original_title%5E1%20movie_info%5E5%20review_content%5E3&rows=50&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22slavery%20slave%22%20reRankDocs%3D50%7D",
-    "http://localhost:8983/solr/movies/select?defType=dismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&fq=mean_vote_imdb%3A%20%5B8.0%20TO%2010.0%5D&indent=true&q.op=OR&q=%22World%20war%20II%22%20emotional&qf=movie_info%5E2%20review_content%5E4&rows=36&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22%27world%20war%202%27%20emotive%22%20reRankDocs%3D50%7D",
-    "http://localhost:8983/solr/movies/select?defType=dismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&indent=true&pf=review_content%5E5&ps=3&q.op=AND&q=true%20crime%20story&qf=review_content%5E2%20movie_info%5E3&rows=54&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22true%20crime%20story%22%20reRankDocs%3D50%7D",
-    "http://localhost:8983/solr/movies/select?defType=dismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&fq=genres%3A%22Kids%20%26%20Family%22&indent=true&pf=review_content%5E5&ps=5&q.op=OR&q=Christmas&qf=original_title%5E4%20movie_info%5E3%20review_content%5E2%20ner_dest_date%5E8&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22Christmas%22%20reRankDocs%3D50%7D"
+    "http://localhost:8983/solr/books/select?defType=edismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&indent=true&q.op=OR&q=hitler%20AND%20biography&qf=title%5E3%20genre_and_votes%5E2%20description%5E1%20author%5E3&rows=92&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22hitler%20biography%22%7D",
+    "http://localhost:8983/solr/books/select?defType=edismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&indent=true&q.op=OR&q=comics%20AND%20(%22spider-man%22%20OR%20%22Peter%20Parker%22)&qf=title%5E3%20genre_and_votes%5E2%20description%5E1%20characters%5E2%20ner_person_field%5E2&rows=31&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22spider-man%22%7D",
+    "http://localhost:8983/solr/books/select?defType=edismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&indent=true&q.op=OR&q=einstein%20AND%20-fiction%20AND%20(philosophy%20OR%20science)&qf=title%5E3%20genre_and_votes%5E2%20description%5E1%20characters%5E3%20ner_person_field%5E3&rows=100&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22einstein%20science%22%7D",
+    "http://localhost:8983/solr/books/select?defType=edismax&fl=*%2Cid%2Cscore%2C%5Bfeatures%5D&fq=description%3Akingdom&fq=genre_and_votes%3Achildrens&fq=genre_and_votes%3Afantasy&indent=true&pf=reviews%5E5&ps=5&q.op=OR&q=%22easy%20read%22&qf=reviews%5E2&rows=100&rq=%7B!ltr%20model%3Dmy_efi_model%20efi.text%3D%22kingdom%22%7D"
     ]
 
 total_features = []

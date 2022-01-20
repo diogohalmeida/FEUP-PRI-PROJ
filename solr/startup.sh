@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#precreate-core reviews
+precreate-core reviews
 
 precreate-core books
 
@@ -27,14 +27,10 @@ cp /models/en-pos-maxent.bin /var/solr/data/books/conf/en-pos-maxent.bin
 
 sleep 30
 
-# Schema definition via API
-#curl -X POST -H 'Content-type:application/json' \
-#    --data-binary @/data/config.json \
-#    http://localhost:8983/solr/books/config
 
-# curl -X POST -H 'Content-type:application/json' \
-#    --data-binary @/data/reviews_schema.json \
-#    http://localhost:8983/solr/reviews/schema
+curl -X POST -H 'Content-type:application/json' \
+    --data-binary @/data/reviews_schema.json \
+    http://localhost:8983/solr/reviews/schema
 
 curl -X POST -H 'Content-type:application/json' \
     --data-binary @/data/schema.json \
@@ -49,7 +45,7 @@ curl -XPUT -H 'Content-type:application/json' \
     http://localhost:8983/solr/books/schema/model-store
 
 # Populate collection
-#bin/post -c reviews /data/goodreads_reviews_solr.csv
+bin/post -c reviews /data/goodreads_reviews_solr.csv
 
 # Populate collection
 bin/post -c books /data/data.json

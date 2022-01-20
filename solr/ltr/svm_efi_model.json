@@ -1,0 +1,21 @@
+{
+    "store" : "my_efi_feature_store",
+    "name" : "my_efi_model",
+    "class" : "org.apache.solr.ltr.model.LinearModel",
+    "features" : [
+        { "name" : "original_score" },
+        { "name" : "maximize_rating" },
+        { "name" : "maximize_average_rating" },
+        { "name" : "maximize_recommendation_number" },
+        { "name": "description_bm25"}
+    ],
+    "params" : {
+      "weights" : {
+        "original_score" : 0.101421140,
+        "maximize_rating": 0.0000374446746,
+        "maximize_average_rating": 0.0103230082,
+        "maximize_recommendation_number": 0.00573651196,
+        "description_bm25": 0.144506728
+      }
+    }
+  }
